@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><title>Noor – Assistant islamique & Coran</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4efe3;--card:#fffdf8;--tx:#1b2a24;--mut:#6f7a72;--ac:#0b6e55;--ac2:#e4f1ea;--gold:#b8923a;--bd:#e6dcc3;--sh:0 8px 28px rgba(40,60,45,.10)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1612;--card:#13221b;--tx:#e9f0ea;--mut:#92a398;--ac:#3fbf93;--ac2:#1b3128;--gold:#d8b45e;--bd:#25382e;--sh:0 8px 28px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#0b1612;--card:#13221b;--tx:#e9f0ea;--mut:#92a398;--ac:#3fbf93;--ac2:#1b3128;--gold:#d8b45e;--bd:#25382e;--sh:0 8px 28px rgba(0,0,0,.4)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+.w{max-width:720px;margin:0 auto;padding:0 16px 24px}
+.hero{margin:0 -16px 16px;padding:26px 20px 30px;text-align:center;color:#fff;border-radius:0 0 28px 28px;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.10) 0 2px,transparent 3px) 0 0/26px 26px,linear-gradient(145deg,#0b6e55,#0a3d33 70%);box-shadow:var(--sh)}
+.bsm{font:400 28px/1.4 Amiri,"Traditional Arabic",serif;color:#f1d98b}
+h1{font:700 34px/1.1 Amiri,Georgia,serif;margin:2px 0 4px;letter-spacing:.5px}.sub{color:#cfe6dc;font-size:14px}
+.tabs{display:flex;gap:6px;margin-bottom:14px;padding:5px;background:var(--card);border:1px solid var(--bd);border-radius:16px;box-shadow:var(--sh)}
+.tabs button{flex:1;padding:10px;border:0;background:transparent;color:var(--mut);border-radius:12px;font:500 15px Inter,system-ui,sans-serif;transition:.2s}
+.tabs button.on{background:var(--ac);color:#fff;box-shadow:0 4px 12px rgba(11,110,85,.35)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:14px;box-shadow:var(--sh)}
+#log{min-height:260px;max-height:55vh;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:2px}
+.m{padding:11px 14px;border-radius:18px;max-width:90%;white-space:pre-wrap;animation:in .25s ease}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.u{align-self:flex-end;background:var(--ac);color:#fff;border-bottom-right-radius:6px}.a{align-self:flex-start;background:var(--ac2);border-bottom-left-radius:6px}
+.row{display:flex;gap:8px;margin-top:12px}
+input{flex:1;min-width:0;padding:13px 16px;border:1px solid var(--bd);border-radius:99px;background:var(--bg);color:var(--tx);font-size:16px;outline:0}input:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--ac2)}
+.go{padding:0 20px;border:0;border-radius:99px;background:linear-gradient(135deg,var(--ac),#09513f);color:#fff;font-size:15px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.chip{padding:7px 12px;border:1px solid var(--bd);border-radius:99px;background:var(--bg);color:var(--tx);font-size:13px}.chip:active{background:var(--ac2)}
+.s{display:flex;align-items:center;gap:12px;padding:10px 6px;border-bottom:1px solid var(--bd)}
+.s:last-child{border:0}.n{width:32px;height:32px;line-height:32px;border-radius:10px;background:var(--ac2);color:var(--ac);font-size:13px;font-weight:600;text-align:center}
+.t{flex:1}.ar{font:400 22px Amiri,serif;color:var(--gold)}
+.p{width:42px;height:42px;border-radius:50%;border:0;background:var(--ac);color:#fff;font-size:15px;box-shadow:0 4px 10px rgba(11,110,85,.3)}
+#bar{position:sticky;bottom:8px;margin-top:12px;border-color:var(--gold)}
+audio{width:100%;border-radius:12px}
+.note{font-size:12.5px;color:var(--mut);margin-top:10px}
+.hide{display:none!important}
+.s{border-radius:14px;transition:background .15s}.s:hover,.s:active{background:var(--ac2)}
+.p{transition:transform .15s}.p:active{transform:scale(.9)}
+.card h3,.rh{font:700 20px Amiri,Georgia,serif;margin:4px 2px 8px;color:var(--ac)}
+#now{font:700 17px Amiri,Georgia,serif;color:var(--ac)}
+.hero{position:relative;overflow:hidden}.hero:after{content:"۞";position:absolute;right:-18px;bottom:-34px;font-size:120px;color:rgba(241,217,139,.12)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:var(--bd);border-radius:9px}
+
+/* --- esthétique v3 --- */
+body{background:radial-gradient(900px 420px at 50% -80px,rgba(184,146,58,.14),transparent 70%),var(--bg);min-height:100vh}
+.hero{padding:34px 20px 36px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23f1d98b' stroke-opacity='.16' stroke-width='1'%3E%3Cpath d='M32 6l7 12 13-5-5 13 12 7-12 7 5 13-13-5-7 12-7-12-13 5 5-13-12-7 12-7-5-13 13 5z'/%3E%3Ccircle cx='32' cy='32' r='7'/%3E%3C/g%3E%3C/svg%3E") center/64px 64px,radial-gradient(circle at 80% 0,rgba(241,217,139,.22),transparent 45%),linear-gradient(150deg,#0e8567,#073d32 75%);border-bottom:2px solid var(--gold)}
+.bsm{font-size:32px;text-shadow:0 2px 14px rgba(0,0,0,.35)}
+h1{font-size:40px;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.sub{opacity:.9;letter-spacing:.3px}
+#thm{position:absolute;top:12px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;font-size:17px;backdrop-filter:blur(6px)}
+.tabs{position:sticky;top:8px;z-index:5;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--card) 82%,transparent);border-radius:99px}
+.tabs button{border-radius:99px;font-weight:600}
+.tabs button.on{background:linear-gradient(135deg,var(--ac),#07503e)}
+.card{border-radius:24px;border:1px solid color-mix(in srgb,var(--gold) 35%,var(--bd))}
+.m{line-height:1.6;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.a{border-left:3px solid var(--gold)}
+.u{background:linear-gradient(135deg,var(--ac),#07503e)}
+.rh{display:flex;align-items:center;gap:10px;font-size:22px;margin:18px 2px 8px}
+.rh:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.s{background:color-mix(in srgb,var(--bg) 55%,transparent);margin:6px 0;padding:10px 12px;border:1px solid var(--bd)!important}
+.s:hover{transform:translateY(-1px);box-shadow:var(--sh)}
+.p{background:linear-gradient(135deg,#12a37b,#0b6e55);box-shadow:0 0 0 4px var(--ac2),0 6px 14px rgba(11,110,85,.35)}
+#bar{border-radius:26px;border:1px solid var(--gold);background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(16px);box-shadow:0 14px 40px rgba(0,0,0,.28)}
+.chip{box-shadow:0 1px 3px rgba(0,0,0,.06);transition:.15s}.chip:hover{border-color:var(--gold)}
+.go{box-shadow:0 4px 12px rgba(11,110,85,.35)}
+#v1:not(.hide),#v2:not(.hide),#v3:not(.hide){animation:up .35s ease}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.w:after{content:"✦  Créé par MOUHAMED RASSOUL KANE  ✦";display:block;text-align:center;margin-top:26px;font:400 15px Amiri,Georgia,serif;color:var(--gold);letter-spacing:.5px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* --- v4 : bulles de message & esthétique --- */
+:root{--bub-a:#eef6f1}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bub-a:#1d3329}}
+:root[data-theme="dark"]{--bub-a:#1d3329}
+html{-webkit-text-size-adjust:100%}*{-webkit-tap-highlight-color:transparent}
+button{font-family:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.hero{padding:30px 20px 32px}
+.hero .bsm{font-size:30px}
+.hero h1{margin:4px 0 6px}
+.sub{display:inline-block;padding:5px 14px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(241,217,139,.28);font-size:13px}
+.tabs button{display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+/* conversation */
+#v1 .card{padding:14px 12px}
+#log{gap:14px;padding:4px 2px 10px;min-height:300px;max-height:min(62vh,620px);overscroll-behavior:contain}
+.rw{display:flex;gap:8px;align-items:flex-end;animation:in .3s ease}
+.rwu{justify-content:flex-end}.rwa{justify-content:flex-start}
+.av{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;padding-bottom:4px;font:700 21px/1 Amiri,serif;color:#f1d98b;background:linear-gradient(145deg,#0e8567,#073d32);box-shadow:0 0 0 2px var(--card),0 0 0 3px var(--gold);margin-bottom:20px}
+.bw{display:flex;flex-direction:column;min-width:0;max-width:calc(100% - 44px)}
+.rwu .bw{align-items:flex-end;max-width:84%}
+.m{max-width:100%;white-space:normal;overflow-wrap:anywhere;padding:12px 15px;font-size:15.5px;line-height:1.62;border-radius:20px;animation:none}
+.m.a{background:var(--bub-a);border:1px solid color-mix(in srgb,var(--gold) 30%,var(--bd));border-bottom-left-radius:6px;box-shadow:0 2px 10px rgba(40,60,45,.08)}
+.m.u{white-space:pre-wrap;background:linear-gradient(135deg,#0e8567,#07503e);border:0;color:#fff;border-bottom-right-radius:6px;box-shadow:0 5px 16px rgba(11,110,85,.28)}
+.m p{margin:0}.m p+p,.m p+ul,.m p+ol,.m ul+p,.m ol+p,.m p+.verse,.m .verse+p,.m h4+p{margin-top:8px}
+.m ul,.m ol{margin:6px 0;padding-left:20px}.m li{margin:3px 0}.m li::marker{color:var(--gold);font-weight:600}
+.m h4{margin:10px 0 4px;font:700 18px Amiri,Georgia,serif;color:var(--ac)}.m h4:first-child{margin-top:0}
+.m b{font-weight:600}.m hr{border:0;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:10px 0}
+.ara{font:400 1.28em/1.9 Amiri,"Traditional Arabic",serif}
+.verse{font:400 25px/2.1 Amiri,"Traditional Arabic",serif;text-align:center;margin:8px 0;padding:10px 14px;border-radius:14px;background:color-mix(in srgb,var(--gold) 11%,transparent);border:1px solid color-mix(in srgb,var(--gold) 38%,transparent)}
+.m audio{margin-top:6px}
+.m.typing{padding:15px 18px}
+.dots{display:inline-flex;gap:5px;align-items:center}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:bn 1.2s infinite ease-in-out}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes bn{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
+.mt{display:flex;gap:8px;align-items:center;margin:4px 8px 0;font-size:11.5px;color:var(--mut)}
+.cp{border:0;background:transparent;color:var(--mut);font-size:11.5px;padding:2px 8px;border-radius:99px}.cp:hover,.cp:active{background:var(--ac2);color:var(--ac)}
+/* suggestions */
+#chips{flex-wrap:nowrap;overflow-x:auto;margin:6px -2px 2px;padding:2px;scrollbar-width:none}#chips::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;flex:none}#rchips .chip{white-space:normal}
+#chips .adm{order:2;opacity:.8}
+/* composer */
+#v1 .row{align-items:center;padding:5px;border:1px solid var(--bd);border-radius:99px;background:var(--bg);margin-top:8px}
+#v1 .row:focus-within{border-color:var(--ac);box-shadow:0 0 0 3px var(--ac2)}
+#v1 .row input{border:0;background:transparent;box-shadow:none;padding:10px 6px 10px 14px}
+#send{width:46px;height:46px;padding:0;display:grid;place-items:center;flex:none;transition:transform .15s,opacity .2s}
+#send svg{width:20px;height:20px}#send:active{transform:scale(.92)}#send:disabled{opacity:.45}
+/* sourates */
+.n{width:38px;height:38px;line-height:38px;border-radius:0;clip-path:polygon(50.0% 0.0%,65.7% 12.1%,85.4% 14.6%,87.9% 34.3%,100.0% 50.0%,87.9% 65.7%,85.4% 85.4%,65.7% 87.9%,50.0% 100.0%,34.3% 87.9%,14.6% 85.4%,12.1% 65.7%,0.0% 50.0%,12.1% 34.3%,14.6% 14.6%,34.3% 12.1%);background:linear-gradient(145deg,#12a37b,#0b6e55);color:#fff;font-size:12.5px;flex:none}
+.s .ar{font-size:24px}
+#bar{padding:12px 14px}
+#bar .chip{font-size:12.5px}
+
+/* --- v5 : dhikr, tasbih, rappels (v2) --- */
+.tabs{border-radius:22px;gap:4px;padding:4px}
+.tabs button{flex-direction:column;gap:1px;font-size:11.5px;padding:7px 2px;line-height:1.25;border-radius:18px}
+.tabs button b{font-size:19px;font-weight:400;line-height:1.2}
+.hero .bsm:after{content:"";display:block;width:110px;height:2px;margin:8px auto 0;background:linear-gradient(90deg,transparent,#f1d98b,transparent)}
+.hero h1{background:linear-gradient(180deg,#fff 30%,#f1d98b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none}
+#dh .card{margin-bottom:16px}
+.chip.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.scr{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.scr::-webkit-scrollbar{display:none}
+.sec{display:flex;align-items:center;gap:10px;margin:2px 2px 14px}
+.sec .ic{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-size:18px;background:var(--ac2);flex:none}
+.sec h3{margin:0;font:700 22px Amiri,Georgia,serif;color:var(--ac);flex:none}
+.sec:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.lb{font-size:10.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin:0 0 4px}
+.dj{text-align:center;color:#fff;border-color:var(--gold);background:radial-gradient(circle at 85% 0,rgba(241,217,139,.22),transparent 50%),linear-gradient(150deg,#0e8567,#073d32 80%)}
+.dj .k{font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:#f1d98b}
+.dj .a2{font:400 28px/2 Amiri,"Traditional Arabic",serif;color:#f1d98b;margin:6px 0 0}
+.dj .p2{font-style:italic;color:#d6efe3;font-size:15px;margin:0 0 8px;line-height:1.5}
+.dj .f{font-size:14px;color:#e4f1ea;line-height:1.55}.dj .sr{display:inline-block;margin-top:10px;padding:3px 12px;border-radius:99px;font-size:11.5px;color:#f1d98b;border:1px solid rgba(241,217,139,.4)}
+.ring{--p:0;width:min(230px,64vw);aspect-ratio:1;margin:14px auto 8px;border-radius:50%;padding:9px;background:conic-gradient(var(--gold) calc(var(--p)*1%),var(--bd) 0);display:grid;place-items:center;transition:background .2s;box-shadow:0 10px 30px rgba(184,146,58,.18)}
+.tap{width:100%;height:100%;border-radius:50%;border:0;background:radial-gradient(circle at 30% 22%,#14b38a,#07503e 78%);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;box-shadow:inset 0 -8px 20px rgba(0,0,0,.25),0 6px 18px rgba(11,110,85,.4);transition:transform .08s;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.tap:active{transform:scale(.96)}.tap .cn{font:700 64px/1 Inter,sans-serif}.tap small{font-size:14px;opacity:.85}
+.ring.fin .tap{background:radial-gradient(circle at 30% 22%,#e3c168,#b8923a 80%)}
+.tcur{text-align:center;margin-top:12px}.tcur .verse{margin:0 0 4px}
+.tcur .ph{background:transparent;border:0;padding:0 0 4px;text-align:center}.tcur .sn{margin:0}
+.ctr{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:6px;align-items:center}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
+.seg button{display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 2px;border:1px solid var(--bd);border-radius:16px;background:var(--bg);color:var(--mut);font:600 12px/1.2 Inter,sans-serif;transition:.2s}
+.seg button b{font-size:20px;font-weight:400}
+.seg button.on{background:linear-gradient(135deg,var(--ac),#07503e);color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(11,110,85,.3)}
+.cap{font:700 17px Amiri,Georgia,serif;color:var(--ac);margin:0 0 6px}
+.pb{height:8px;border-radius:99px;background:var(--bd);overflow:hidden;margin:6px 0 14px}
+.pb i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--gold));border-radius:inherit;transition:width .3s}
+.ad{margin:0 0 12px;padding:14px;border:1px solid var(--bd);border-radius:20px;background:color-mix(in srgb,var(--bg) 60%,var(--card));transition:.2s}
+.ad.ok{border-color:var(--ac);background:color-mix(in srgb,var(--ac2) 55%,var(--card))}
+.ah{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ni{width:32px;height:32px;line-height:32px;text-align:center;font-size:12px;font-weight:600;color:#fff;background:linear-gradient(145deg,#12a37b,#0b6e55);clip-path:polygon(50.0% 0.0%,65.7% 12.1%,85.4% 14.6%,87.9% 34.3%,100.0% 50.0%,87.9% 65.7%,85.4% 85.4%,65.7% 87.9%,50.0% 100.0%,34.3% 87.9%,14.6% 85.4%,12.1% 65.7%,0.0% 50.0%,12.1% 34.3%,14.6% 14.6%,34.3% 12.1%)}
+.rep{font-size:12px;font-weight:600;padding:4px 11px;border-radius:99px;background:var(--ac2);color:var(--ac)}
+.ad .verse{font-size:24px;margin:0 0 12px}
+.ph{margin:0 0 12px;padding:10px 12px;border-radius:12px;background:var(--ac2);border-left:3px solid var(--ac);font-style:italic;font-size:15px;line-height:1.55;white-space:pre-line}
+.sn{font-size:14.5px;color:var(--mut);margin:0 0 12px;line-height:1.55}
+.af{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.src{font-size:11.5px;color:var(--mut)}
+.cnt{min-width:100px;padding:9px 16px;font-weight:600}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;width:100%}
+.vtxt:not(:empty){margin-top:10px}.vtxt p{margin:4px 0;font-size:14px}.vtxt .verse{font-size:22px}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.pc{position:relative;text-align:left;padding:10px 30px 10px 12px;border:1px dashed var(--gold);border-radius:14px;background:transparent;color:var(--tx)}
+.pc:after{content:"+";position:absolute;right:11px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--gold)}
+.pc:active{background:var(--ac2)}
+.rm{display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:center;padding:12px;margin:8px 0;border:1px solid var(--bd);border-radius:18px;background:color-mix(in srgb,var(--bg) 60%,var(--card));transition:.2s}
+.rm.off{opacity:.55}
+.rm .tm{font:700 19px Inter,sans-serif;color:#fff;background:linear-gradient(145deg,#12a37b,#0b6e55);padding:9px 11px;border-radius:14px}
+.rm .t{min-width:0}.rl{font-weight:600;line-height:1.3}.sub2{font-size:12.5px;color:var(--mut)}.ph2{font-size:12.5px;font-style:italic;color:var(--ac);margin-top:2px}
+.rm .acts{grid-column:1/-1;margin-top:2px}
+.tg{width:46px;height:28px;border-radius:99px;border:0;background:var(--bd);position:relative;flex:none;transition:.2s}
+.tg:after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.tg.on{background:var(--ac)}.tg.on:after{left:21px}
+input[type=time]{flex:none;width:122px}
+.dys{display:flex;gap:6px;margin:10px 0;justify-content:space-between}.dys .chip{flex:1;padding:8px 0;text-align:center}
+#toast{position:fixed;left:12px;right:12px;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:50;max-width:520px;margin:0 auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 14px;border-radius:18px;background:linear-gradient(135deg,#0e8567,#073d32);color:#fff;border:1px solid var(--gold);box-shadow:0 14px 40px rgba(0,0,0,.35);animation:up .3s ease}
+#toast .t{flex:1;min-width:140px;font-weight:600}
+#toast .ph3{font-weight:400;font-style:italic;font-size:13px;color:#d6efe3;margin-top:2px}
+#toast .chip{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.3)}
+
+/* --- v6 : deux bulles simples --- */
+#dh .card{padding:16px 14px}
+.dj{border-radius:18px;padding:14px 12px;margin:0 0 14px;border:1px solid var(--gold)}
+.dj .a2{font-size:24px;line-height:1.9}.dj .p2{font-size:14px;margin-bottom:4px}
+.seg{grid-template-columns:repeat(5,1fr);gap:5px}
+.seg button{font-size:11px;padding:8px 0}.seg button b{font-size:19px}
+.tbody{padding-top:4px}.tbody .chips{margin-top:0}
+.src{flex:1;min-width:120px}
+.cnt{padding:10px 18px}
+.empty{padding:16px;text-align:center;color:var(--mut);font-size:14px;border:1px dashed var(--bd);border-radius:16px;margin-bottom:10px}
+.addbtn{display:block;width:100%;margin-top:10px;padding:13px;border:1.5px dashed var(--gold);border-radius:16px;background:transparent;color:var(--ac);font:600 15px Inter,sans-serif}
+.addbtn:active{background:var(--ac2)}
+.addp{margin-top:12px;padding:14px 12px;border:1px solid var(--bd);border-radius:18px;background:color-mix(in srgb,var(--bg) 60%,var(--card))}
+.addp .lb{margin:2px 0 8px}.addp .lb:not(:first-child){margin-top:14px}
+
+/* --- v7 : rappels du Coran --- */
+.seg4{grid-template-columns:repeat(4,1fr)}
+.qv .rep{display:inline-block}
+.kp{margin:2px 0 12px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--gold) 14%,transparent);border-left:3px solid var(--gold);font-size:14.5px;font-weight:500;line-height:1.5}
+.kp .lb{margin:0 0 2px}.qv .acts{margin-top:0}
+.sn+.dj,.sn+.seg{margin-top:4px}
+</style></head><body><div class="w"><div class="hero"><div class="bsm">بسم الله الرحمن الرحيم</div><h1>Noor · نور</h1><div class="sub">Assistant islamique &amp; lecteur du Coran</div></div>
+<div class="tabs"><button id="t1" class="on"><b>💬</b>Questions</button><button id="t2"><b>🎧</b>Coran</button><button id="t3"><b>📚</b>Ma base</button><button id="t4"><b>🤲</b>Dhikr</button></div>
+
+<div id="v1"><div class="card"><div id="log" role="log" aria-live="polite"></div>
+<div class="chips" id="chips"></div>
+<div class="row"><input id="q" placeholder="Pose ta question…" autocomplete="off" enterkeyhint="send" aria-label="Ta question"><button class="go" id="send" aria-label="Envoyer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></button></div></div></div>
+
+<div id="v3" class="hide"><div class="card" id="db"></div></div>
+<div id="v4" class="hide"><div id="dh"></div></div>
+<div id="v2" class="hide"><div class="card">
+<div class="row" style="margin-top:0"><input id="sq" placeholder="Ex : Alafasy, Sudais, Husary Al-Kahf…"><button class="go" id="sgo">OK</button></div>
+<div class="chips" id="rchips"></div>
+<div id="res" class="note">Écris le nom d'un récitateur (et éventuellement d'une sourate) ou touche un nom ci-dessus.</div></div>
+<div id="bar" class="card hide"><div id="now" style="font-size:14px;margin-bottom:6px"></div><div class="row" style="margin:0 0 8px"><button class="chip" id="prv">⏮ Précédente</button><button class="chip" id="fav">☆ Favori</button><button class="chip" id="spd">Vitesse 1×</button><button class="chip" id="nxt">Suivante ⏭</button></div><audio id="au" controls></audio><a id="fb" class="hide" target="_blank" rel="noopener" style="display:block;margin-top:8px;color:var(--ac)">⚠️ Lecture bloquée ici → ouvrir l audio dans un nouvel onglet</a></div>
+<div class="note">Audio diffusé depuis mp3quran.net. Si un lien ne marche pas, l app essaie automatiquement une autre source.</div></div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const M=(slug,r="r1")=>`https://cdn.mp3quran.net/audio/${slug}/${r}/{p}.mp3`;
+const O=(srv,d)=>`https://${srv}.mp3quran.net/${d}/{p}.mp3`;
+const I=id=>`https://cdn.islamic.app/quran/audio-surah/${id}/{n}.mp3`;
+const R=[
+["Mishary Alafasy","alafasy afasy mishary mishari مشاري العفاسي",[M("mishary-alafasy"),O("server8","afs"),I("ar.alafasy")]],
+["Abdur-Rahman As-Sudais","sudais soudais sudays sedeis abdurrahman abderrahman سديس",[M("abdulrahman-sudais"),O("server11","sds")]],
+["Saud Ash-Shuraim","shuraim shuraym chouraim saoud saud",[M("saud-shuraim"),O("server7","shur")]],
+["Maher Al-Muaiqly","maher muaiqly mouaiqly maaiqly meaqli",[M("maher-muaiqly"),O("server12","maher")]],
+["Maher Al-Muaiqly (Mujawwad)","maher muaiqly mujawwad",[M("maher-muaiqly","r3")]],
+["Mahmoud Khalil Al-Husary","husary hosary hussary houssary mahmoud khalil",[M("mahmoud-husary"),O("server13","husr")]],
+["Al-Husary (Mujawwad)","husary hosary mujawwad",[M("mahmoud-husary","r2")]],
+["Muhammad Siddiq Al-Minshawi","minshawi minchawi menshawi siddiq",[M("muhammad-minshawi"),O("server10","minsh")]],
+["Al-Minshawi (Mujawwad)","minshawi mujawwad",[M("muhammad-minshawi","r2")]],
+["Abdul Basit Abdus-Samad","abdulbasit abdelbasset basit samad",[O("server7","basit")]],
+["Saad Al-Ghamdi","ghamdi ghamidi ghamadi saad",[M("saad-ghamdi"),O("server7","s_gmd"),I("ar.saadalghamdi")]],
+["Abu Bakr Ash-Shatri","shatri shaatree chatri bakr abubakr",[M("abubakr-shatri"),O("server11","shatri")]],
+["Ahmed Al-Ajmi","ajmi ajamy ajami ahmed",[O("server10","ajm")]],
+["Ibrahim Al-Akhdar","akhdar akhdhar akdar ibrahim",[M("ibrahim-akhdar"),O("server6","akdr")]],
+["Muhammad Ayyub","ayyub ayyoub ayoub",[M("muhammad-ayyub")]],
+["Muhammad Jibreel","jibreel jibril gibril",[M("muhammad-jibreel")]],
+["Idris Abkar","abkar abkr idris idrees",[M("idrees-abkar"),O("server6","abkr")]],
+["Mustafa Ismail","mustafa ismail mostafa",[M("mustafa-ismail")]],
+["Ahmad Al-Hudhaifi","hudhaifi hudhaify houdhaifi huthaifi",[M("ahmad-hudhaifi")]],
+["Ali Al-Hudhaify","hudhaify hudhayfi houdhaifi ali",[O("server9","hthfi")]],
+["Khalid Al-Jalil","jalil jileel jaleel khalid",[M("khalid-jalil")]],
+["Khalid Al-Qahtani","qahtani qahtany khalid",[M("khalid-qahtani")]],
+["Muhammad Al-Luhaidan","luhaidan lohaidan lahidan",[M("muhammad-luhaidan")]],
+["Mahmoud Ali Al-Banna","banna albanna mahmoud",[M("mahmoud-banna")]],
+["Wadee Al-Yamani","yamani wadeea wadie",[M("wadee-yamani")]],
+["Nasser Al-Qatami","qatami qatamy nasser nasir",[O("server6","qtm")]],
+["Yasser Ad-Dosari","dosari dossari dossary yasser",[O("server11","yasser")]],
+["Ibrahim Al-Jebreen","jebreen jibreen ibrahim",[M("ibrahim-jibreen")]],
+["Ibrahim Al-Asiri","asiri assiri ibrahim",[M("ibrahim-asiri")]],
+["Abdulrahman Al-Majed","majed abdulrahman",[M("abdulrahman-majed")]],
+["Abdulrahman Alsuwayid","suwayid souayed abdulrahman",[M("abdulrahman-suwayid")]],
+["Hazza Al-Balushi","hazza balushi baloushi",[M("hazza-balushi")]],
+["Khalifa Al-Tunaiji","tunaiji tunaiji khalifa",[M("khalifa-tunaiji")]],
+["Ahmad Al-Nufais","nufais nofais ahmad",[M("ahmad-nufais")]],
+["Ahmad Al-Trabulsi","trabulsi tarabulsi ahmad",[M("ahmad-tarabulsi","r2")]],
+["Adel Al-Kalbani","kalbani khalbani adel",[M("adel-kalbani")]],
+["Abdullah Kamel","kamel kamil abdullah",[M("abdullah-kamel")]],
+["Abdullah Al-Khalaf","khalaf abdullah",[M("abdullah-khalaf")]],
+["Bandar Baleela","baleela balilah bandar",[M("bandar-baleela")]],
+["Muhammad Al-Tablawi","tablawi tablaway tablawy",[M("muhammad-tablawi")]],
+["Sahl Yassin","sahl yassin yasin",[M("sahl-yassin")]],
+["Zaki Daghistani","zaki daghistani daghestani",[M("zaki-daghistani")]],
+["Yasser Salamah","salamah salama yasser",[M("yasser-salama")]],
+["Ahmad Al-Swailem","swailem suwailem ahmad",[M("ahmad-suwailem")]],
+["Nasser Al-Majed","majed nasser",[M("nasser-majed")]],
+["Akram Al-Alaqmi","",[M("akram-alaqmi")]],
+["Majed Al-Zamil","",[M("majed-zamil")]],
+["Muhammad Al-Muhaisni","",[M("muhammad-muhaisni")]],
+["Mahmoud Al-Rifai","",[M("mahmoud-rifai")]],
+["Ibrahim Al-Jormy","",[M("ibrahim-jormy")]],
+["Hatem Fareed Al-Waer","",[M("hatem-waer")]],
+["Hassan Saleh","",[M("hassan-saleh")]],
+["Abdulrahman Al-Shahat","",[M("abdulrahman-shahat")]],
+["Saleh Al-Quraishi","",[M("saleh-quraishi")]],
+["Saleh Al-Shamrani","",[M("saleh-shamrani")]],
+["Faisal Al-Hajri","",[M("faisal-hajri")]],
+["Anas Al-Emadi","",[M("anas-emadi")]],
+["Abdulkareem Al-Hazmi","",[M("abdulkareem-hazmi")]],
+["Khalid Mohammadi","",[M("khalid-mohammadi")]],
+["Salman Al-Siddiq","",[M("salman-siddiq")]],
+["Muhammad Rashad Alshareef","",[M("muhammad-shareef")]],
+["Muhammad Al-Zubaidi","",[M("muhammad-zubaidi")]],
+["Abdulrahman Al-Badr","",[M("abdulrahman-badr")]],
+["Abdullah Al-Qarafi","",[M("abdullah-qarafi")]],
+["Khalid Al-Ziyadi","",[M("khalid-ziyadi")]],
+["Yousef Aidarous","",[M("yousef-aidarous")]],
+["Ahmad Shaheen","",[M("ahmad-shaheen")]],
+["Saad Al-Muqrin","",[M("saad-muqrin")]],
+["Hashim Abu Dalal","",[M("hashim-abudalal")]],
+["Fouad Al-Khamiri","",[M("fouad-khamiri")]],
+["Mansour Al-Salimi","",[M("mansour-salimi")]],
+["Nasser Al-Asfour","",[M("nasser-asfour")]],
+["Badr Al-Turki","bader badr turki turky torki بدر التركي",[M("badr-turki")]],
+["Dawood Hamza","",[M("dawood-hamza")]],
+["Rami Al-Duais","",[M("rami-duais")]],
+["Raad Al-Kurdi","",[M("raad-kurdi")]],
+["Peshawa Qadir Al-Kurdi","",[M("peshawa-kurdi")]],
+["Khalid Abdulkafi","",[M("khalid-abdulkafi")]],
+["Khalid Al-Mohanna","",[M("khalid-mohanna")]],
+["Muhammad Al-Bukheet","",[M("muhammad-bukhait")]],
+["Muhammad Khalil Al-Qari","",[M("muhammad-khalil")]],
+["Mahmoud Harfoush","",[M("mahmoud-harfoush")]],
+["Asim Al-Luhaidan","",[M("asim-luhaidan")]],
+["Jamaan Al-Osaimi","",[M("jamaan-osaimi")]],
+["Moeedh Al-Harthi","",[M("moeedh-harthi")]],
+["Tawfeeq As-Sayegh","",[M("tawfeeq-sayegh")]],
+["Jamal Shaker Abdullah","",[M("jamal-abdullah")]],
+["Abdulelah Aoun","",[M("abdulelah-aoun")]],
+["Musa Bilal","",[M("musa-bilal")]],
+["Ahmed Amer","",[M("ahmad-amer")]],
+["Abdullah Al-Kandari","",[M("abdullah-kandari")]],
+["Muhammad Osman Khan","",[M("muhammad-khan")]],
+["Muhammad Al-Faqih","",[M("muhammad-faqih")]],
+["Muhammad Burhaji","",[M("muhammad-burhaji")]],
+["Mustafa Al-Lahouni","",[M("mustafa-lahouni")]],
+["Mustafa Al-Azzawi","",[M("mustafa-azzawi")]],
+["Zain Muhammad Ahmad","",[M("zain-ahmad")]],
+["Sayed Ramadan","",[M("sayed-ramadan")]],
+["Yousef Ahmad","",[M("yousef-ahmad")]],
+["Muhammad Saleh Alim Shah","",[M("muhammad-shah")]],
+["Muhammad Abdulkareem","",[M("muhammad-abdulkareem")]],
+["Maher Shakhashiro","",[M("maher-shakhashiro")]],
+["Ahmad Al-Masarawi","",[M("ahmad-masarawi")]],
+["Abdulrahman Al-Oosi","",[M("abdulrahman-oosi")]],
+["Mahmoud Abdul Hakam","",[M("mahmoud-abdulhakam")]],
+["Ibrahim Al-Dosari","dosari dossari ibrahim",[M("ibrahim-dosari","r2")]],
+["Mustafa Ismail (Mujawwad)","mustafa ismail mujawwad",[M("mustafa-ismail","r2")]],
+["Mahmoud Al-Banna (Mujawwad)","banna mujawwad",[M("mahmoud-banna","r2")]],
+["Muhammad Ayyub (Featured)","ayyub ayyoub featured",[M("muhammad-ayyub","r2")]],
+["Ahmad Talib bin Humaid","humaid hamid talib",[M("ahmad-humaid","r1")]],
+["Hassan Al-Daghriri","daghriri dagriri hassan",[M("hassan-daghriri","r1")]],
+["Hamad Al-Daghriri","daghriri dagriri hamad",[M("hamad-daghriri","r1")]],
+["Khalid Al-Ghamdi","ghamdi ghamdy khalid",[M("khalid-ghamdi","r1")]],
+["Salman Al-Otaibi","otaibi utaybi salman",[M("salman-otaibi","r1")]],
+["Ahmad Deban","deban deeban dibane ahmad",[M("ahmad-deeban","r1")]],
+["Abdulaziz Al-Asiri","asiri assiri abdulaziz",[M("abdulaziz-asiri","r1")]],
+["Mahmoud Al-Husary (Warsh)","husary hosary warsh ورش",[M("mahmoud-husary","r3")]],
+["Mahmoud Al-Husary (Qalon)","husary hosary qalon qaloun",[M("mahmoud-husary","r5")]],
+["Yassine Al-Jazairi (Warsh)","yassine yassen jazairi algerie warsh ورش",[M("yassen-jazairi","r1")]],
+["Rachid Belalya (Warsh)","rachid belalya belalia warsh maroc ورش",[M("rachid-belalia","r1")]],
+["Laayoun Al-Kouchi (Warsh)","laayoun ayoun kouchi koshi warsh maroc ورش",[M("laayoun-kouchi","r1")]],
+["Muhammad Saayed (Warsh)","saayed said warsh ورش",[M("muhammad-saayed","r1")]],
+["Ibrahim Al-Dosari (Warsh)","dosari dossari warsh ibrahim ورش",[M("ibrahim-dosari","r1")]],
+["Abdelmoujib Benkirane (Warsh)","benkirane abdelmoujib maroc warsh ورش",[M("abdelmoujib-benkirane","r1")]],
+["Hicham Lharraz (Warsh)","hicham lharraz harraz maroc warsh ورش",[M("hicham-lharraz","r1")]],
+["Ahmad Al-Trabulsi (Qalon)","trabulsi tarabulsi qalon qaloun ahmad",[M("ahmad-tarabulsi","r1")]],
+["Tareq Daawob (Qalon)","tareq tarek daawob qalon qaloun",[M("tareq-daawob","r1")]],
+["Marwan Al-Akri (Qalon)","marwan akri qalon qaloun",[M("marwan-akri","r1")]],
+["Muhammad Abu Sneina (Qalon)","abusneina sneina qalon qaloun",[M("muhammad-abusnaina","r1")]],
+["Muhammad Qeniwa (Qalon)","qeniwa qaniwa qalon qaloun",[M("muhammad-qeniwa","r1")]],
+["Addokali Al-Alim (Qalon)","dokali alim addokali qalon qaloun algerie",[M("dokali-alim","r1")]]
+];
+const S="Al-Fatiha,Al-Baqara,Al-Imran,An-Nisa,Al-Ma'ida,Al-An'am,Al-A'raf,Al-Anfal,At-Tawba,Yunus,Hud,Yusuf,Ar-Ra'd,Ibrahim,Al-Hijr,An-Nahl,Al-Isra,Al-Kahf,Maryam,Ta-Ha,Al-Anbiya,Al-Hajj,Al-Mu'minun,An-Nur,Al-Furqan,Ash-Shu'ara,An-Naml,Al-Qasas,Al-Ankabut,Ar-Rum,Luqman,As-Sajda,Al-Ahzab,Saba,Fatir,Ya-Sin,As-Saffat,Sad,Az-Zumar,Ghafir,Fussilat,Ash-Shura,Az-Zukhruf,Ad-Dukhan,Al-Jathiya,Al-Ahqaf,Muhammad,Al-Fath,Al-Hujurat,Qaf,Adh-Dhariyat,At-Tur,An-Najm,Al-Qamar,Ar-Rahman,Al-Waqi'a,Al-Hadid,Al-Mujadila,Al-Hashr,Al-Mumtahana,As-Saff,Al-Jumu'a,Al-Munafiqun,At-Taghabun,At-Talaq,At-Tahrim,Al-Mulk,Al-Qalam,Al-Haqqa,Al-Ma'arij,Nuh,Al-Jinn,Al-Muzzammil,Al-Muddaththir,Al-Qiyama,Al-Insan,Al-Mursalat,An-Naba,An-Nazi'at,Abasa,At-Takwir,Al-Infitar,Al-Mutaffifin,Al-Inshiqaq,Al-Buruj,At-Tariq,Al-A'la,Al-Ghashiya,Al-Fajr,Al-Balad,Ash-Shams,Al-Layl,Ad-Duha,Ash-Sharh,At-Tin,Al-Alaq,Al-Qadr,Al-Bayyina,Az-Zalzala,Al-Adiyat,Al-Qari'a,At-Takathur,Al-Asr,Al-Humaza,Al-Fil,Quraysh,Al-Ma'un,Al-Kawthar,Al-Kafirun,An-Nasr,Al-Masad,Al-Ikhlas,Al-Falaq,An-Nas".split(",");
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f'’\-]/g,"").replace(/\s+/g,"");
+function show(v){$("v1").classList.toggle("hide",v!=1);$("v2").classList.toggle("hide",v!=2);$("t1").classList.toggle("on",v==1);$("t2").classList.toggle("on",v==2)}
+$("t1").onclick=()=>show(1);$("t2").onclick=()=>show(2);
+if(typeof noorIA==="undefined"){
+const KEY="noor_groq";
+let MODELS=["llama-3.3-70b-versatile","llama-3.1-8b-instant"],mi=0,modelsOk=false;
+async function aiSample(input,o){let tools=o.tools||[];
+ let key=localStorage.getItem(KEY);
+ if(!key){key=prompt("Colle ta clé gratuite Groq (gsk_…) obtenue sur console.groq.com/keys. Elle reste uniquement sur cet appareil.");if(!key)throw{code:"nokey"};key=key.trim();localStorage.setItem(KEY,key)}
+ const msgs=input.map(m=>({role:m.role,content:m.content})),mk=()=>tools.map(t=>({type:"function",function:{name:t.name,description:t.description,parameters:t.inputSchema}}));
+ if(!modelsOk){try{const rr=await fetch("https://api.groq.com/openai/v1/models",{headers:{authorization:"Bearer "+key}});if(rr.status==401){localStorage.removeItem(KEY);throw{code:"auth"}}
+  if(rr.ok){const ids=(await rr.json()).data.map(m=>m.id).filter(id=>!/whisper|tts|guard|orpheus|playai|safeguard|embed/i.test(id));
+   const pref=[/gpt-oss-120b/,/llama-3\.3-70b/,/maverick/,/qwen/,/gpt-oss-20b/,/scout/,/70b/,/llama/];const rank=id=>{const k=pref.findIndex(p=>p.test(id));return k<0?99:k};
+   if(ids.length){MODELS=ids.sort((x,y)=>rank(x)-rank(y)).slice(0,6);mi=0;modelsOk=true}}}catch(e){if(e&&e.code=="auth")throw e}}
+ for(let n=0;n<6;n++){
+  const body={model:MODELS[mi],temperature:.2,max_tokens:700,messages:msgs};if(tools.length)body.tools=mk();
+  let r;try{r=await fetch("https://api.groq.com/openai/v1/chat/completions",{method:"POST",headers:{"content-type":"application/json","authorization":"Bearer "+key},body:JSON.stringify(body)})}catch(e){throw{code:"net"}}
+  if(!r.ok){let det="";try{det=(await r.json()).error.message}catch(e){}
+   if(r.status==401){localStorage.removeItem(KEY);throw{code:"auth"}}
+   if((r.status==429||r.status==404)&&mi<MODELS.length-1){mi++;continue}
+   if(r.status==429)throw{code:"rate_limited"};
+   if(tools.length&&r.status==400){tools=[];continue}
+   throw{code:"err",status:r.status,detail:det}}
+  const d=await r.json(),m=d.choices[0].message,text=m.content||"";
+  if(!m.tool_calls||!m.tool_calls.length){o.onText&&o.onText({text});return{text}}
+  msgs.push(m);
+  for(const c of m.tool_calls){const t=tools.find(x=>x.name==c.function.name);let out;try{out=String(await t.execute(JSON.parse(c.function.arguments||"{}")))}catch(e){out="Erreur"}msgs.push({role:"tool",tool_call_id:c.id,content:out})}}
+ return{text:"Je n'ai pas réussi à répondre, réessaie."}}
+window.noorIA={use:async()=>aiSample};
+const kb=document.createElement("button");kb.className="chip";kb.textContent="🔑 Changer la clé Groq";kb.onclick=()=>{localStorage.removeItem(KEY);add("a","Clé effacée. Elle te sera redemandée à ta prochaine question.")};$("chips").appendChild(kb)}
+
+
+function findR(q){const w=clean(q);if(!w.length)return[];let best=0;const sc=R.map((r,k)=>{const n=w.filter(x=>hit(x,k)).length;best=Math.max(best,n);return n});return best?R.filter((r,k)=>sc[k]==best):[]}
+function findS(q){if(q==null||q==="")return -1;q=String(q).trim();if(/^\d+$/.test(q)){const n=+q;return n>=1&&n<=114?n-1:-1}const t=norm(q.replace(/^(sourate|surah|sura)\s*/i,""));let i=S.findIndex(s=>norm(s)==t);if(i<0)i=S.findIndex(s=>norm(s).includes(t)||t.includes(norm(s)));return i}
+function card(r,i){const d=document.createElement("div");d.className="m a";const c=r[2].map(t=>mk(t,i));let k=0;
+  d.innerHTML='<div style="font-weight:600;margin-bottom:6px"></div><audio controls preload="none" style="width:100%"></audio><a target="_blank" rel="noopener" style="display:block;margin-top:8px;padding:10px;text-align:center;border-radius:10px;background:var(--ac);color:#fff;text-decoration:none;font-size:15px">▶ Écouter (ouvre l audio)</a>';
+  d.firstChild.textContent="🎧 "+r[0]+" — "+(i+1)+". "+S[i];const a=d.querySelector("audio"),l=d.querySelector("a");a.src=c[0];l.href=c[0];
+  a.onerror=()=>{if(k+1<c.length){k++;a.src=c[k];l.href=c[k];a.play().catch(()=>{})}};
+  $("log").appendChild(wrap(d,"a",false));$("log").scrollTop=1e9;return a}
+// ---- Questions
+const hist=[];
+function errMsg(e){const c=e&&e.code;return c=="rate_limited"?"Limite gratuite Groq atteinte, réessaie dans un instant.":c=="auth"?"Clé Groq refusée. Elle a été effacée : pose une nouvelle question et colle une clé valide (gsk_…).":c=="net"?"Connexion impossible à Groq (réseau ou blocage du navigateur). Vérifie ta connexion.":c=="nokey"?"Aucune clé saisie. Pose ta question à nouveau et colle ta clé Groq.":"Erreur Groq"+(e&&e.status?" ("+e.status+")":"")+(e&&e.detail?" : "+e.detail:"")+"."}let sample=null,busy=false;
+["Qui est Allah ?","Les 5 piliers de l'islam","Parle-moi du prophète Moussa","Comment faire la prière ?"].forEach(t=>{const b=document.createElement("button");b.className="chip";b.textContent=t;b.onclick=()=>{$("q").value=t;$("send").click()};$("chips").appendChild(b)});
+const SYS="Tu es Noor, un assistant islamique bienveillant. Si on te demande qui t'a créé, qui est ton créateur ou qui t'a développé, réponds exactement : « J'ai été créé par MOUHAMED RASSOUL KANE. » Utilise naturellement les expressions islamiques : réponds « Alhamdulillah » quand on te demande comment tu vas ou quand il y a une bonne nouvelle, et emploie « Macha Allah », « In cha Allah » et « Baraka Allahou fik » à bon escient. Commence tes réponses par « Salam » ou « Wa alaykoum salam » si la personne salue. Réponds en français (ou dans la langue de l'utilisateur), de façon claire, respectueuse et concise. Appuie-toi sur le Coran et les hadiths authentiques (sahih) en citant la sourate/le verset ou le recueil quand tu le peux, sans inventer de références. Après le nom d'Allah dis ﷻ si naturel, et ﷺ après le Prophète Muhammad ; 'AS' ou 'عليه السلام' après les autres prophètes. Présente les divergences entre écoles juridiques quand elles existent. Pour les avis religieux personnels (fatwas), rappelle qu'il faut consulter un savant qualifié. Quand la personne veut écouter / mettre / jouer une récitation du Coran (récitateur et/ou sourate), appelle TOUJOURS l'outil play_quran au lieu de répondre en texte, puis confirme en une phrase. Si le récitateur est ambigu ou inconnu, l'outil te renverra des suggestions : propose-les. RÈGLES DE FIABILITÉ : ne cite jamais un verset de mémoire, utilise TOUJOURS l'outil get_verse puis recopie fidèlement son résultat avec la référence. Ne cite un hadith que s'il est très célèbre et dans Bukhari ou Muslim, avec le recueil ; sinon dis que tu ne peux pas confirmer la référence. Si tu n'es pas sûr d'une information, dis-le clairement et n'invente jamais (ni nom, ni date, ni numéro). Distingue ce qui fait consensus de ce qui diverge. Reste bref. Quand la personne partage une information durable sur elle (prénom, niveau, préférences, récitateur favori), appelle l'outil remember. Ne remplace pas un savant. Quand la personne demande un « rappel » (sur la mort, la patience, le repentir, la gratitude, etc.), il s'agit d'un rappel coranique : appelle get_verse pour 1 à 3 versets pertinents, recopie-les fidèlement, puis ajoute un court « À retenir » bienveillant. Ne crée une alarme (add_reminder) que si la personne demande à être alertée à une heure précise.";
+const WELCOME="Salam ! Pose-moi tes questions sur l'islam : Allah, les prophètes, la prière, la sîra, le Coran… Je réponds en français et je te renvoie vers un savant pour les avis religieux (fatwas).";
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const AR_C="\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF";
+const AR_G=new RegExp("["+AR_C+"]","g"),AR_RUN=new RegExp("["+AR_C+"](?:["+AR_C+"\u200c\u200d ]*["+AR_C+"])?","g");
+function inl(s){return esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/(^|[\s(])\*([^*\s][^*]*?)\*(?=[\s).,;:!?]|$)/g,"$1<i>$2</i>").replace(AR_RUN,m=>'<span class="ara" dir="rtl">'+m+"</span>")}
+function md(t){let h="",list=null;const close=()=>{if(list){h+="</"+list+">";list=null}};
+ for(const raw of String(t).split("\n")){const l=raw.trim();let m;if(!l){close();continue}
+  if(/^-{3,}$/.test(l)){close();h+="<hr>";continue}
+  if(m=l.match(/^[-*•]\s+(.*)/)){if(list!="ul"){close();h+="<ul>";list="ul"}h+="<li>"+inl(m[1])+"</li>";continue}
+  if(m=l.match(/^\d+[.)]\s+(.*)/)){if(list!="ol"){close();h+="<ol>";list="ol"}h+="<li>"+inl(m[1])+"</li>";continue}
+  close();
+  if(m=l.match(/^#{1,4}\s+(.*)/)){h+="<h4>"+inl(m[1])+"</h4>";continue}
+  if((l.match(AR_G)||[]).length>l.length*.5){h+='<div class="verse" dir="rtl">'+esc(l)+"</div>";continue}
+  h+="<p>"+inl(l)+"</p>"}
+ close();return h}
+function setMsg(el,t){el.classList.remove("typing");el.dataset.raw=t;el.innerHTML=md(t)}
+function wrap(b,c,copy){const r=document.createElement("div");r.className="rw rw"+c;
+ if(c=="a"){const av=document.createElement("div");av.className="av";av.textContent="ن";r.appendChild(av)}
+ const w=document.createElement("div");w.className="bw";w.appendChild(b);
+ const mt=document.createElement("div");mt.className="mt";const tm=document.createElement("span");tm.textContent=new Date().toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});mt.appendChild(tm);
+ if(copy){const cb=document.createElement("button");cb.className="cp";cb.textContent="Copier";cb.onclick=async()=>{try{await navigator.clipboard.writeText(b.dataset.raw||b.textContent);cb.textContent="Copié ✓"}catch(e){cb.textContent="Échec"}setTimeout(()=>cb.textContent="Copier",1400)};mt.appendChild(cb)}
+ w.appendChild(mt);r.appendChild(w);return r}
+function add(c,t){const d=document.createElement("div");d.className="m "+c;if(c=="a")setMsg(d,t);else d.textContent=t;$("log").appendChild(wrap(d,c,c=="a"));$("log").scrollTop=1e9;return d}
+add("a",WELCOME);
+const tools=[{name:"play_quran",description:"Affiche un lecteur audio dans le chat pour écouter une sourate récitée par un récitateur donné.",inputSchema:{type:"object",properties:{reciter:{type:"string",description:"nom du récitateur, ex: Alafasy, Sudais, Husary"},surah:{type:"string",description:"nom (ex: Al-Kahf) ou numéro de la sourate (1-114)"}},required:["reciter","surah"]},
+  execute:async({reciter,surah})=>{const i=findS(surah);if(i<0)return "Sourate introuvable : "+surah+". Demande à la personne de préciser.";
+    const m=findR(reciter);if(!m.length)return "Récitateur inconnu. Exemples disponibles : "+R.slice(0,12).map(r=>r[0]).join(", ");
+    if(m.length>1&&m.length<=6&&!m.some(r=>norm(r[0])==norm(reciter)))return "Plusieurs récitateurs possibles : "+m.map(r=>r[0]).join(" ; ")+". Demande lequel.";
+    const r=m[0];card(r,i).play().catch(()=>{});return "Lecteur affiché pour "+r[0]+", sourate "+(i+1)+" "+S[i]+"."}}];
+async function ask(){
+  const q=$("q").value.trim();if(!q||busy)return;
+  try{if(!sample)sample=await noorIA.use("sample")}catch(e){}
+  if(!sample){add("a","L'assistant n'est pas disponible dans cette vue (la fonction IA n'est pas activée).");return}
+  $("q").value="";add("u",q);hist.push({role:"user",content:q});busy=true;$("send").disabled=true;
+  const el=add("a","");el.classList.add("typing");el.innerHTML='<span class="dots" aria-label="Noor écrit"><i></i><i></i><i></i></span>';
+  const input=[{role:"user",content:SYS+memTxt()+"\n\nVoici la conversation. Réponds au dernier message."},{role:"assistant",content:"Compris."},...hist.slice(-6)];
+  try{const r=await sample(input,{cache:false,tools,onText:({text})=>{setMsg(el,text);$("log").scrollTop=1e9}});
+    const tx=r.text||"Je n'ai pas de réponse, réessaie.";setMsg(el,tx);hist.push({role:"assistant",content:tx})}
+  catch(e){setMsg(el,errMsg(e))}
+  busy=false;$("send").disabled=false;$("log").scrollTop=1e9}
+$("send").onclick=ask;$("q").onkeydown=e=>{if(e.key=="Enter")ask()};
+
+// ---- Coran
+const au=$("au");
+const STOP=new Set(["abdul","abu","bin","ibn","sheikh","cheikh","sourate","surah","sura"]);
+const clean=t=>t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f'’]/g,"").replace(/-/g," ").split(/\s+/).filter(w=>w.length>2&&!STOP.has(w));
+const rwords=R.map(r=>new Set((r[0]+" "+r[1]).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f'’]/g,"").replace(/-/g," ").split(/\s+/)));
+function near(a,b){if(a==b)return true;if(Math.abs(a.length-b.length)>1)return false;let i=0;while(i<a.length&&i<b.length&&a[i]==b[i])i++;if(a.length==b.length)return a.slice(i+1)==b.slice(i+1);return a.length>b.length?a.slice(i+1)==b.slice(i):a.slice(i)==b.slice(i+1)}
+function hit(w,k){if(rwords[k].has(w))return true;if(w.length<4)return false;for(const x of rwords[k])if(x.length>=4&&near(w,x))return true;return false}
+R.slice(0,10).forEach(r=>{const b=document.createElement("button");b.className="chip";b.textContent=r[0];b.onclick=()=>{$("sq").value=r[0];search()};$("rchips").appendChild(b)});
+let cand=[],ci=0;
+const mk=(t,i)=>t.replace("{p}",String(i+1).padStart(3,"0")).replace("{n}",i+1);
+let ext=false;
+function play(r,i){cand=r[2].map(t=>mk(t,i));ci=0;if(ext){window.open(cand[0],"_blank");return}$("now").textContent=`${r[0]} — ${i+1}. ${S[i]}`;$("fb").classList.add("hide");$("bar").classList.remove("hide");au.src=cand[0];au.play().catch(()=>{})}
+au.onerror=()=>{if(ci+1<cand.length){ci++;au.src=cand[ci];au.play().catch(()=>{})}else{ext=true;const a=$("fb");a.href=cand[0];a.classList.remove("hide");$("now").textContent+=" — lecture intégrée bloquée, les prochains ▶ ouvriront l audio dans un onglet"}};
+const AR="الفاتحة,البقرة,آل عمران,النساء,المائدة,الأنعام,الأعراف,الأنفال,التوبة,يونس,هود,يوسف,الرعد,إبراهيم,الحجر,النحل,الإسراء,الكهف,مريم,طه,الأنبياء,الحج,المؤمنون,النور,الفرقان,الشعراء,النمل,القصص,العنكبوت,الروم,لقمان,السجدة,الأحزاب,سبأ,فاطر,يس,الصافات,ص,الزمر,غافر,فصلت,الشورى,الزخرف,الدخان,الجاثية,الأحقاف,محمد,الفتح,الحجرات,ق,الذاريات,الطور,النجم,القمر,الرحمن,الواقعة,الحديد,المجادلة,الحشر,الممتحنة,الصف,الجمعة,المنافقون,التغابن,الطلاق,التحريم,الملك,القلم,الحاقة,المعارج,نوح,الجن,المزمل,المدثر,القيامة,الإنسان,المرسلات,النبأ,النازعات,عبس,التكوير,الانفطار,المطففين,الانشقاق,البروج,الطارق,الأعلى,الغاشية,الفجر,البلد,الشمس,الليل,الضحى,الشرح,التين,العلق,القدر,البينة,الزلزلة,العاديات,القارعة,التكاثر,العصر,الهمزة,الفيل,قريش,الماعون,الكوثر,الكافرون,النصر,المسد,الإخلاص,الفلق,الناس".split(",");
+function row(o,r,i){const d=document.createElement("div");d.className="s";d.innerHTML='<div class="n">'+(i+1)+'</div><div class="t"></div><div class="ar"></div><button class="p" aria-label="Écouter">▶</button>';d.querySelector(".ar").textContent=AR[i];
+  d.querySelector(".t").textContent=S[i];d.querySelector(".p").onclick=()=>play(r,i);o.appendChild(d)}
+function search(){
+  const out=$("res");out.innerHTML="";out.className="";
+  const w=clean($("sq").value);
+  if(!w.length){out.className="note";out.textContent="Écris un récitateur et/ou une sourate.";return}
+  let best=0,sc=R.map((r,k)=>{const n=w.filter(x=>hit(x,k)).length;best=Math.max(best,n);return n});
+  if(!best){
+    const q=norm($("sq").value);const sm=S.map((s,i)=>[s,i]).filter(([s])=>norm(s).includes(q));
+    if(sm.length){out.innerHTML="<div class='note'>Choisis un récitateur pour "+sm[0][0]+" :</div>";R.forEach(r=>row(out,r,sm[0][1]));out.querySelectorAll(".t").forEach((t,k)=>t.textContent=R[k][0]);out.querySelectorAll(".p").forEach((p,k)=>p.onclick=()=>play(R[k],sm[0][1]));return}
+    out.className="note";out.textContent="Aucun récitateur trouvé. Essaie : Alafasy, Sudais, Shuraim, Maher, Husary, Minshawi, Ghamdi…";return}
+  const top=R.filter((r,k)=>sc[k]==best);
+  if(top.length>1){out.innerHTML="<div class='note'>Plusieurs récitateurs, lequel ?</div>";const c=document.createElement("div");c.className="chips";
+    top.slice(0,10).forEach(r=>{const b=document.createElement("button");b.className="chip";b.textContent=r[0];b.onclick=()=>{$("sq").value=r[0]+" "+w.filter(x=>!hit(x,R.indexOf(r))).join(" ");search()};c.appendChild(b)});out.appendChild(c);return}
+  const found=top[0],k=R.indexOf(found);const rest=w.filter(x=>!hit(x,k));const sq=norm(rest.join(" "));
+  let list=S.map((s,i)=>i);if(sq)list=list.filter(i=>norm(S[i]).includes(sq)||String(i+1)==sq);
+  const h=document.createElement("div");h.style.fontWeight="600";h.textContent=found[0]+" — "+list.length+(list.length>1?" sourates":" sourate");out.appendChild(h);
+  if(!list.length){const n=document.createElement("div");n.className="note";n.textContent="Sourate introuvable.";out.appendChild(n)}
+  list.forEach(i=>row(out,found,i))}
+$("sgo").onclick=search;$("sq").onkeydown=e=>{if(e.key=="Enter")search()};
+
+/* --- extras version autonome --- */
+let cur=null,rates=[1,1.25,1.5,.75],ri=0;
+const _play=play;play=function(r,i){cur=[r,i];try{localStorage.setItem("noor_last",JSON.stringify([R.indexOf(r),i]))}catch(e){}_play(r,i);
+ if("mediaSession" in navigator){navigator.mediaSession.metadata=new MediaMetadata({title:S[i],artist:r[0],album:"Noor"});navigator.mediaSession.setActionHandler("nexttrack",()=>step(1));navigator.mediaSession.setActionHandler("previoustrack",()=>step(-1))}};
+function step(d){if(cur){const n=cur[1]+d;if(n>=0&&n<114)play(cur[0],n)}}
+au.onended=()=>step(1);au.onloadedmetadata=()=>{au.playbackRate=rates[ri]};
+$("nxt").onclick=()=>step(1);$("prv").onclick=()=>step(-1);
+$("spd").onclick=()=>{ri=(ri+1)%rates.length;au.playbackRate=rates[ri];$("spd").textContent="Vitesse "+rates[ri]+"×"};
+try{const l=JSON.parse(localStorage.getItem("noor_last")||"null");if(l&&R[l[0]]){const b=document.createElement("button");b.className="chip";b.style.borderColor="var(--gold)";b.textContent="↻ Reprendre : "+R[l[0]][0]+" — "+S[l[1]];b.onclick=()=>play(R[l[0]],l[1]);$("rchips").prepend(b)}}catch(e){}
+
+tools.push({name:"get_verse",description:"Récupère le texte arabe et la traduction française exacts d'un ou plusieurs versets du Coran. À utiliser avant de citer tout verset.",inputSchema:{type:"object",properties:{surah:{type:"string",description:"nom ou numéro de la sourate"},from:{type:"integer",description:"premier verset"},to:{type:"integer",description:"dernier verset (max 7 de plus que from)"}},required:["surah","from"]},
+ execute:async({surah,from,to})=>{const i=findS(surah);if(i<0)return "Sourate introuvable.";const a=Math.max(1,+from||1),b=Math.min(+(to||a),a+6);
+  try{const r=await fetch("https://api.alquran.cloud/v1/surah/"+(i+1)+"/editions/quran-uthmani,fr.hamidullah?offset="+(a-1)+"&limit="+(b-a+1));const d=await r.json();if(!d.data)return "Verset introuvable.";
+   return d.data[0].ayahs.map((x,k)=>S[i]+" ("+(i+1)+":"+x.numberInSurah+")\n"+x.text+"\n"+d.data[1].ayahs[k].text+" [trad. Hamidullah]").join("\n\n")}catch(e){return "Service des versets indisponible : ne cite pas de verset."}}});
+
+/* --- base de données locale + mémoire --- */
+const DB=(()=>{let d=null;try{d=JSON.parse(localStorage.getItem("noor_db")||"null")}catch(e){}
+ d=d&&typeof d=="object"?d:{};for(const k of["mem","chat","favs","plays","convs"])if(!Array.isArray(d[k]))d[k]=[];
+ return{d,save(){try{localStorage.setItem("noor_db",JSON.stringify(d))}catch(e){}}}})();
+function memTxt(){return DB.d.mem.length?"\n\nMémoire sur la personne (utilise-la naturellement) : "+DB.d.mem.join(" ; "):""}
+tools.push({name:"remember",description:"Mémorise un fait durable sur la personne (prénom, niveau, préférences, récitateur favori).",inputSchema:{type:"object",properties:{fact:{type:"string",description:"le fait, en une courte phrase"}},required:["fact"]},
+ execute:async({fact})=>{fact=String(fact||"").slice(0,200);if(fact&&!DB.d.mem.includes(fact)){DB.d.mem.push(fact);DB.d.mem=DB.d.mem.slice(-30);DB.save()}return "Mémorisé."}});
+// conversation sauvegardée
+DB.d.chat.forEach(m=>{if(m&&m.role&&typeof m.content=="string"){hist.push(m);add(m.role=="user"?"u":"a",m.content)}});
+const _ask=ask;const ask2=async()=>{await _ask();DB.d.chat=hist.slice(-40);DB.save()};
+$("send").onclick=ask2;$("q").onkeydown=e=>{if(e.key=="Enter")ask2()};
+// historique d'écoute
+const _p2=play;play=function(r,i){DB.d.plays.unshift([R.indexOf(r),i,Date.now()]);DB.d.plays=DB.d.plays.slice(0,50);DB.save();_p2(r,i)};
+// favoris
+const isFav=(a,b)=>DB.d.favs.some(f=>f[0]==a&&f[1]==b);
+$("fav").onclick=()=>{if(!cur)return;const a=R.indexOf(cur[0]),b=cur[1];DB.d.favs=isFav(a,b)?DB.d.favs.filter(f=>!(f[0]==a&&f[1]==b)):[[a,b],...DB.d.favs];DB.save();$("fav").textContent=isFav(a,b)?"★ Favori":"☆ Favori"};
+au.addEventListener("loadstart",()=>{if(cur)$("fav").textContent=isFav(R.indexOf(cur[0]),cur[1])?"★ Favori":"☆ Favori"});
+// onglet Ma base
+const h=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+function sect(p,title){p.appendChild(h("div","rh",title))}
+function line(p,txt,onPlay,onDel){const d=h("div","s");d.appendChild(h("div","t",txt));if(onPlay){const b=h("button","p","▶");b.onclick=onPlay;d.appendChild(b)}if(onDel){const b=h("button","chip","✕");b.onclick=onDel;d.appendChild(b)}p.appendChild(d)}
+function renderDB(){const p=$("db");p.innerHTML="";
+ sect(p,"🧠 Mémoire de l'assistant");
+ if(!DB.d.mem.length)p.appendChild(h("div","note","Rien pour l'instant. Dis-lui par exemple « je m'appelle Karim », il s'en souviendra."));
+ DB.d.mem.forEach((m,i)=>line(p,m,null,()=>{DB.d.mem.splice(i,1);DB.save();renderDB()}));
+ const r=h("div","row"),inp=h("input");inp.placeholder="Ajouter un souvenir…";const ad=h("button","go","+");ad.onclick=()=>{const v=inp.value.trim();if(v){DB.d.mem.push(v.slice(0,200));DB.save();renderDB()}};r.append(inp,ad);p.appendChild(r);
+ sect(p,"⭐ Favoris");if(!DB.d.favs.length)p.appendChild(h("div","note","Touche ☆ Favori dans le lecteur pour en ajouter."));
+ DB.d.favs.forEach(f=>{if(R[f[0]])line(p,R[f[0]][0]+" — "+(f[1]+1)+". "+S[f[1]],()=>{show(2);play(R[f[0]],f[1])},()=>{DB.d.favs=DB.d.favs.filter(x=>x!==f);DB.save();renderDB()})});
+ sect(p,"🕘 Dernières écoutes ("+DB.d.plays.length+")");
+ DB.d.plays.slice(0,10).forEach(x=>{if(R[x[0]])line(p,R[x[0]][0]+" — "+(x[1]+1)+". "+S[x[1]]+" · "+new Date(x[2]).toLocaleDateString("fr-FR"),()=>{show(2);play(R[x[0]],x[1])})});
+ sect(p,"🗂 Historique des conversations");if(!DB.d.convs.length)p.appendChild(h("div","note","Aucune conversation archivée. Touche « ➕ Nouvelle conversation » dans l'onglet Questions pour archiver la conversation en cours."));
+ DB.d.convs.forEach((c,i)=>line(p,c.t+" · "+new Date(c.d).toLocaleDateString("fr-FR"),()=>loadConv(i),()=>{DB.d.convs.splice(i,1);DB.save();renderDB()}));
+ sect(p,"💾 Données");const row=h("div","chips");
+ const ex=h("button","chip","Exporter");ex.onclick=()=>{const a=h("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(DB.d)],{type:"application/json"}));a.download="noor-sauvegarde.json";a.click()};
+ const im=h("button","chip","Importer"),fi=h("input");fi.type="file";fi.accept=".json";fi.className="hide";fi.onchange=async()=>{try{const j=JSON.parse(await fi.files[0].text());for(const k of["mem","chat","favs","plays","convs"])if(Array.isArray(j[k]))DB.d[k]=j[k];if(Array.isArray(j.rem))DB.d.rem=j.rem;if(j.tas&&typeof j.tas=="object")DB.d.tas=j.tas;DB.save();location.reload()}catch(e){alert("Fichier invalide")}};im.onclick=()=>fi.click();
+ const cl=h("button","chip","Tout effacer");cl.onclick=()=>{if(confirm("Effacer mémoire, favoris, historique et conversation ?")){for(const k of["mem","chat","favs","plays","convs"])DB.d[k]=[];DB.d.rem=[];DB.d.tas={};DB.d.done={};DB.save();location.reload()}};
+ row.append(ex,im,fi,cl);p.appendChild(row);p.appendChild(h("div","note","Tout est enregistré uniquement dans ce navigateur, sur cet appareil. Exporte de temps en temps pour garder une sauvegarde."))}
+show=function(v){for(const n of[1,2,3,4]){$("v"+n).classList.toggle("hide",v!=n);$("t"+n).classList.toggle("on",v==n)}if(v==3)renderDB();if(v==4)renderDhikr()};
+$("t3").onclick=()=>show(3);$("t4").onclick=()=>show(4);
+
+function archive(){if(hist.length){const u=hist.find(m=>m.role=="user");DB.d.convs.unshift({t:(u?u.content:"Conversation").slice(0,50),d:Date.now(),m:hist.slice(-40)});DB.d.convs=DB.d.convs.slice(0,30)}hist.length=0}
+function resetLog(){$("log").innerHTML="";}
+function loadConv(i){const c=DB.d.convs[i];if(!c)return;DB.d.convs.splice(i,1);archive();resetLog();c.m.forEach(m=>{hist.push(m);add(m.role=="user"?"u":"a",m.content)});DB.d.chat=hist.slice();DB.save();show(1)}
+const nb=h("button","chip","➕ Nouvelle conversation");nb.onclick=()=>{if(busy)return;archive();DB.d.chat=[];DB.save();resetLog();add("a","Salam ! Nouvelle conversation, je t'écoute. L'ancienne est dans 📚 Ma base → Historique.")};
+$("chips").prepend(nb);
+
+(function(){const hr=document.querySelector(".hero");if(!hr)return;const b=document.createElement("button");b.id="thm";b.setAttribute("aria-label","Thème");
+ const dark=()=>document.documentElement.dataset.theme?document.documentElement.dataset.theme=="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+ const set=t=>{document.documentElement.dataset.theme=t;b.textContent=t=="dark"?"☀":"🌙";try{localStorage.setItem("noor_theme",t)}catch(e){}};
+ let t=null;try{t=localStorage.getItem("noor_theme")}catch(e){}set(t||(dark()?"dark":"light"));b.onclick=()=>set(dark()?"light":"dark");hr.appendChild(b)})();
+
+document.querySelector(".sub").textContent+=" · v9";
+const tb=h("button","chip","🔧 Tester la clé Groq");
+tb.onclick=async()=>{const k=localStorage.getItem("noor_groq");if(!k){add("a","Aucune clé enregistrée. Pose d'abord une question pour la saisir.");return}
+ try{const r=await fetch("https://api.groq.com/openai/v1/models",{headers:{authorization:"Bearer "+k}});add("a",r.ok?"✅ Clé Groq valide et connexion OK.":"❌ Groq répond "+r.status+(r.status==401?" : clé refusée.":"."))}catch(e){add("a","❌ Connexion impossible (réseau ou blocage du navigateur).")}};
+$("chips").prepend(tb);[...$("chips").children].forEach(c=>{if(/Groq/.test(c.textContent))c.classList.add("adm")});
+
+/* ===== Dhikr, tasbih & rappels ===== */
+const tday=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+if(!Array.isArray(DB.d.rem))DB.d.rem=[];
+if(!DB.d.done||typeof DB.d.done!="object"||Array.isArray(DB.d.done))DB.d.done={};
+const isDone=id=>DB.d.done.day==tday()&&Array.isArray(DB.d.done.ids)&&DB.d.done.ids.includes(id);
+function setDone(id,v){if(DB.d.done.day!=tday())DB.d.done={day:tday(),ids:[]};const s=new Set(DB.d.done.ids);v?s.add(id):s.delete(id);DB.d.done.ids=[...s];DB.save()}
+const buzz=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+const dsec=(ic,t)=>{const d=h("div","sec");d.appendChild(h("div","ic",ic));d.appendChild(h("h3",null,t));return d};
+
+const DHK=[
+{n:"Subhâna-llâh",a:"سُبْحَانَ اللَّهِ",p:"Subhâna-llâh",f:"Gloire à Allah"},
+{n:"Al-hamdu li-llâh",a:"الْحَمْدُ لِلَّهِ",p:"Al-hamdu li-llâh",f:"Louange à Allah"},
+{n:"Allâhu akbar",a:"اللَّهُ أَكْبَرُ",p:"Allâhu akbar",f:"Allah est le plus grand"},
+{n:"Lâ ilâha illa-llâh",a:"لَا إِلَٰهَ إِلَّا اللَّهُ",p:"Lâ ilâha illa-llâh",f:"Il n'y a de divinité digne d'adoration qu'Allah"},
+{n:"Astaghfiru-llâh",a:"أَسْتَغْفِرُ اللَّهَ",p:"Astaghfiru-llâh",f:"Je demande pardon à Allah"},
+{n:"Salât 'alâ n-Nabî ﷺ",a:"اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ",p:"Allâhumma salli wa sallim 'alâ nabiyyinâ Muhammad",f:"Ô Allah, prie sur notre Prophète Muhammad et salue-le"},
+{n:"Lâ hawla…",a:"لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",p:"Lâ hawla wa lâ quwwata illâ bi-llâh",f:"Il n'y a de force ni de puissance qu'en Allah"},
+{n:"Subhâna-llâhi wa bihamdih",a:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",p:"Subhâna-llâhi wa bihamdih",f:"Gloire et louange à Allah"}];
+
+const DJ=[
+{a:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ",p:"Subhâna-llâhi wa bihamdihi, subhâna-llâhi l-'Adhîm",f:"Gloire et louange à Allah, gloire à Allah le Magnifique : deux paroles légères sur la langue, lourdes dans la balance, aimées d'Ar-Rahman.",s:"Al-Bukhari, Muslim"},
+{a:"لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",p:"Lâ hawla wa lâ quwwata illâ bi-llâh",f:"Il n'y a de force ni de puissance qu'en Allah : un des trésors du Paradis.",s:"Al-Bukhari, Muslim"},
+{a:"أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ",p:"Astaghfiru-llâha wa atûbu ilayh",f:"Je demande pardon à Allah et je me repens à Lui. Le Prophète ﷺ demandait pardon plus de soixante-dix fois par jour.",s:"Al-Bukhari"},
+{a:"اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ",p:"Allâhumma salli wa sallim 'alâ nabiyyinâ Muhammad",f:"Celui qui prie une fois sur le Prophète ﷺ, Allah prie dix fois sur lui.",s:"Muslim"},
+{a:"لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",p:"Lâ ilâha illa-llâhu wahdahu lâ sharîka lah, lahu l-mulku wa lahu l-hamdu wa huwa 'alâ kulli shay'in qadîr",f:"Il n'y a de divinité digne d'adoration qu'Allah, seul, sans associé. À Lui la royauté et la louange, et Il est capable de toute chose.",s:"Al-Bukhari, Muslim"},
+{a:"حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",p:"Hasbunâ-llâhu wa ni'ma l-wakîl",f:"Allah nous suffit, Il est le meilleur garant.",s:"Coran 3:173"},
+{a:"رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ",p:"Rabbi ghfir lî wa tub 'alayya innaka anta t-tawwâbu r-rahîm",f:"Seigneur, pardonne-moi et accepte mon repentir : Tu es certes Celui qui accepte le repentir, le Miséricordieux.",s:"Abu Dawud, At-Tirmidhi"}];
+
+const SOUR={f:"Sourates Al-Ikhlâs, Al-Falaq et An-Nâs.",p:"Al-Ikhlâs : Qul huwa llâhu ahad. Allâhu s-samad. Lam yalid wa lam yûlad. Wa lam yakun lahû kufuwan ahad.\nAl-Falaq : Qul a'ûdhu bi rabbi l-falaq. Min sharri mâ khalaq. Wa min sharri ghâsiqin idhâ waqab. Wa min sharri n-naffâthâti fî l-'uqad. Wa min sharri hâsidin idhâ hasad.\nAn-Nâs : Qul a'ûdhu bi rabbi n-nâs. Maliki n-nâs. Ilâhi n-nâs. Min sharri l-waswâsi l-khannâs. Alladhî yuwaswisu fî sudûri n-nâs. Mina l-jinnati wa n-nâs.",s:"Abu Dawud, At-Tirmidhi",n:3,v:[["112",1,4,"📖 Al-Ikhlâs"],["113",1,5,"📖 Al-Falaq"],["114",1,6,"📖 An-Nâs"]]};
+const KURSI={f:"Ayat Al-Kursi (Coran 2:255), le verset du Trône.",p:"Allâhu lâ ilâha illâ huwa l-Hayyu l-Qayyûm. Lâ ta'khudhuhû sinatun wa lâ nawm. Lahû mâ fî s-samâwâti wa mâ fî l-ard. Man dhâ lladhî yashfa'u 'indahû illâ bi-idhnih. Ya'lamu mâ bayna aydîhim wa mâ khalfahum. Wa lâ yuhîtûna bi-shay'in min 'ilmihî illâ bimâ shâ'. Wasi'a kursiyyuhu s-samâwâti wa l-ard. Wa lâ ya'ûduhû hifzuhumâ. Wa huwa l-'Aliyyu l-'Adhîm.",s:"Sunna du matin et du soir",n:1,v:[["2",255,255,"📖 Lire le verset"]]};
+const ISTI={a:"اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",p:"Allâhumma anta rabbî lâ ilâha illâ anta, khalaqtanî wa anâ 'abduk, wa anâ 'alâ 'ahdika wa wa'dika mastata'tu, a'ûdhu bika min sharri mâ sana'tu, abû'u laka bi-ni'matika 'alayya, wa abû'u bi-dhanbî faghfir lî fa-innahu lâ yaghfiru dh-dhunûba illâ anta.",f:"Sayyid al-istighfar : « Ô Allah, Tu es mon Seigneur, il n'y a de divinité digne d'adoration que Toi. Tu m'as créé et je suis Ton serviteur ; je respecte mon engagement et ma promesse envers Toi autant que je le peux. Je me réfugie auprès de Toi contre le mal de ce que j'ai fait. Je reconnais Tes bienfaits envers moi et je reconnais mon péché : pardonne-moi, car nul ne pardonne les péchés en dehors de Toi. »",s:"Al-Bukhari",n:1};
+const BISM={a:"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",p:"Bismi-llâhi lladhî lâ yadurru ma'a smihi shay'un fî l-ardi wa lâ fî s-samâ'i wa huwa s-Samî'u l-'Alîm",f:"Au nom d'Allah, avec le nom duquel rien ne peut nuire, ni sur terre ni dans le ciel ; Il est l'Audient, l'Omniscient.",s:"Abu Dawud, At-Tirmidhi",n:3};
+const SUBH={a:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",p:"Subhâna-llâhi wa bihamdih",f:"Gloire et louange à Allah.",s:"Muslim",n:100};
+const ISTG={a:"أَسْتَغْفِرُ اللَّهَ",p:"Astaghfiru-llâh",f:"Je demande pardon à Allah (dans la journée).",s:"Muslim",n:100};
+const TAHL={a:"لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",p:"Lâ ilâha illa-llâhu wahdahu lâ sharîka lah, lahu l-mulku wa lahu l-hamdu wa huwa 'alâ kulli shay'in qadîr",f:"Il n'y a de divinité digne d'adoration qu'Allah, seul, sans associé. À Lui la royauté et la louange, et Il est capable de toute chose.",s:"Al-Bukhari, Muslim"};
+const ADK={
+ matin:{i:"☀️",t:"Matin",cap:"Adhkâr as-Sabâh — les adhkar du matin",l:[SOUR,KURSI,ISTI,BISM,SUBH,{...TAHL,n:100,s:"Al-Bukhari, Muslim (dans la journée)"},ISTG]},
+ soir:{i:"🌙",t:"Soir",cap:"Adhkâr al-Masâ' — les adhkar du soir",l:[SOUR,KURSI,{a:"أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",p:"A'ûdhu bi-kalimâti-llâhi t-tâmmâti min sharri mâ khalaq",f:"Je me réfugie dans les paroles parfaites d'Allah contre le mal de ce qu'Il a créé.",s:"Muslim, At-Tirmidhi",n:3},ISTI,BISM,SUBH,ISTG]},
+ priere:{i:"🕌",t:"Prière",cap:"Ba'da s-salât — après la prière",l:[
+  {a:"أَسْتَغْفِرُ اللَّهَ",p:"Astaghfiru-llâh",f:"Je demande pardon à Allah (trois fois après le salam).",s:"Muslim",n:3},
+  {a:"اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ",p:"Allâhumma anta s-salâm wa minka s-salâm, tabârakta yâ dhâ l-jalâli wa l-ikrâm",f:"Ô Allah, Tu es la Paix et de Toi vient la paix. Béni sois-Tu, ô Détenteur de la majesté et de la générosité.",s:"Muslim",n:1},
+  {a:"سُبْحَانَ اللَّهِ",p:"Subhâna-llâh",f:"Gloire à Allah.",s:"Muslim",n:33},
+  {a:"الْحَمْدُ لِلَّهِ",p:"Al-hamdu li-llâh",f:"Louange à Allah.",s:"Muslim",n:33},
+  {a:"اللَّهُ أَكْبَرُ",p:"Allâhu akbar",f:"Allah est le plus grand.",s:"Muslim",n:33},
+  {...TAHL,n:1,s:"Muslim (pour compléter les cent)"},
+  {...KURSI,s:"An-Nasa'i"}]},
+ sommeil:{i:"😴",t:"Sommeil",cap:"Adhkâr an-Nawm — avant de dormir",l:[
+  {...KURSI,s:"Al-Bukhari"},
+  {...SOUR,f:"Al-Ikhlâs, Al-Falaq et An-Nâs : souffle dans tes paumes, récite les trois sourates, puis passe les mains sur le corps (trois fois).",s:"Al-Bukhari"},
+  {a:"بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",p:"Bismika llâhumma amûtu wa ahyâ",f:"C'est en Ton nom, ô Allah, que je meurs et que je vis.",s:"Al-Bukhari",n:1},
+  {a:"سُبْحَانَ اللَّهِ",p:"Subhâna-llâh",f:"Gloire à Allah.",s:"Al-Bukhari, Muslim",n:33},
+  {a:"الْحَمْدُ لِلَّهِ",p:"Al-hamdu li-llâh",f:"Louange à Allah.",s:"Al-Bukhari, Muslim",n:33},
+  {a:"اللَّهُ أَكْبَرُ",p:"Allâhu akbar",f:"Allah est le plus grand.",s:"Al-Bukhari, Muslim",n:34}]}};
+let curSet=(()=>{const x=new Date().getHours();return x<12?"matin":x<21?"soir":"sommeil"})();
+
+const ALL=[0,1,2,3,4,5,6];
+const PHL={matin:"Subhâna-llâhi wa bihamdih",soir:"A'ûdhu bi-kalimâti-llâhi t-tâmmâti min sharri mâ khalaq",sommeil:"Bismika llâhumma amûtu wa ahyâ",priere:"Astaghfiru-llâh"};
+const PRESETS=[
+{label:"Adhkâr as-Sabâh",fr:"Adhkar du matin",time:"06:30",days:ALL,link:"matin",ph:PHL.matin},
+{label:"Adhkâr al-Masâ'",fr:"Adhkar du soir",time:"17:30",days:ALL,link:"soir",ph:PHL.soir},
+{label:"Adhkâr an-Nawm",fr:"Avant de dormir",time:"22:00",days:ALL,link:"sommeil",ph:PHL.sommeil},
+{label:"Istighfâr wa dhikr",fr:"Pardon et invocation",time:"14:00",days:ALL,link:null,ph:"Astaghfiru-llâha wa atûbu ilayh"},
+{label:"Sûrat al-Kahf",fr:"Sourate Al-Kahf, vendredi",time:"10:00",days:[5],link:null,ph:"Qirâ'atu sûrati l-Kahf"},
+{label:"Salât 'alâ n-Nabî ﷺ",fr:"Prière sur le Prophète, vendredi",time:"15:00",days:[5],link:null,ph:"Allâhumma salli wa sallim 'alâ nabiyyinâ Muhammad"}];
+const DN=["dim","lun","mar","mer","jeu","ven","sam"],ORD=[1,2,3,4,5,6,0],DL=["D","L","M","M","J","V","S"];
+const daysTxt=d=>d.length==7?"Tous les jours":ORD.filter(x=>d.includes(x)).map(x=>DN[x]).join(", ");
+const newId=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+function addRem(label,time,days,link,ph,fr){DB.d.rem.push({id:newId(),label:String(label).slice(0,60),time,days,on:true,link:link||null,ph:ph||null,fr:fr||null});DB.save()}
+
+// --- bannière + déclenchement
+function toast(msg,r,ms){let t=$("toast");if(t)t.remove();t=h("div");t.id="toast";t.setAttribute("role","alert");
+ const tt=h("div","t");tt.appendChild(h("div",null,msg));if(r&&r.ph)tt.appendChild(h("div","ph3",r.ph));t.appendChild(tt);
+ const close=()=>t.remove();
+ if(r&&r.link){const o=h("button","chip","Ouvrir");o.onclick=()=>{close();openSet(r.link)};t.appendChild(o)}
+ if(r&&r.id&&r.id!="test"){const d=h("button","chip","Fait ✓");d.onclick=()=>{setDone(r.id,true);close();if($("remcard"))redrawRem()};t.appendChild(d)}
+ const x=h("button","chip","✕");x.onclick=close;t.appendChild(x);document.body.appendChild(t);setTimeout(close,ms||8000)}
+function fireRem(r){toast("🔔 "+r.label+" — c'est l'heure !",r,90000);buzz([200,100,200]);
+ try{if("Notification" in window&&Notification.permission=="granted")new Notification("Noor — "+r.label,{body:(r.ph?r.ph+" — ":"")+"Bismillah 🤲"})}catch(e){}}
+function chkRem(){const n=new Date(),nm=n.getHours()*60+n.getMinutes(),td=tday();let ch=false;
+ DB.d.rem.forEach(r=>{if(!r.on||r.fired==td||!(r.days||[]).includes(n.getDay()))return;const[a,b]=String(r.time).split(":").map(Number),d=nm-(a*60+b);if(d>=0&&d<=10){r.fired=td;ch=true;fireRem(r)}});if(ch)DB.save()}
+setInterval(chkRem,15000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)chkRem()});chkRem();
+function openSet(k){if(ADK[k]||k=="tasbih")curSet=k;show(4);setTimeout(()=>{const e=$("adkcard");e&&e.scrollIntoView({behavior:"smooth"})},60)}
+
+// --- cartes
+function djCard(){const x=DJ[Math.floor(Date.now()/864e5)%DJ.length],c=h("div","dj");
+ c.appendChild(h("div","k","✦ Dhikr du jour ✦"));const a=h("div","a2",x.a);a.dir="rtl";c.append(a,h("div","p2",x.p),h("div","f",x.f));return c}
+
+function tasState(){let t=DB.d.tas;if(!t||typeof t!="object"||Array.isArray(t))t=DB.d.tas={};if(t.day!=tday()){t.day=tday();t.total=0}
+ t.count=+t.count||0;t.total=+t.total||0;t.target=t.target===0?0:(+t.target||33);t.idx=(+t.idx||0)%DHK.length;return t}
+function tasCard(){const c=h("div","tbody");
+ const chs=h("div","chips scr"),dB=[];DHK.forEach((x,i)=>{const b=h("button","chip",x.n);b.onclick=()=>{const t=tasState();t.idx=i;t.count=0;DB.save();upd()};dB.push(b);chs.appendChild(b)});c.appendChild(chs);
+ const cur=h("div","tcur"),ar=h("div","verse"),ph=h("div","ph"),fr=h("div","sn");ar.dir="rtl";cur.append(ar,ph,fr);c.appendChild(cur);
+ const ring=h("div","ring"),tp=h("button","tap");tp.setAttribute("aria-label","Compter");const cn=h("span","cn"),sm=h("small");tp.append(cn,sm);ring.appendChild(tp);c.appendChild(ring);
+ const ctr=h("div","ctr"),tB=[];[33,99,100,0].forEach(n=>{const b=h("button","chip",n?String(n):"∞");b.onclick=()=>{const t=tasState();t.target=n;t.count=0;DB.save();upd()};tB.push([b,n]);ctr.appendChild(b)});
+ const rs=h("button","chip","↺ Remettre à zéro");rs.onclick=()=>{tasState().count=0;DB.save();upd()};ctr.appendChild(rs);c.appendChild(ctr);
+ const tot=h("div","note");tot.style.textAlign="center";c.appendChild(tot);
+ tp.onclick=()=>{const t=tasState();if(t.target&&t.count>=t.target)t.count=0;t.count++;t.total++;DB.save();buzz(t.target&&t.count>=t.target?[120,80,120]:10);upd()};
+ function upd(){const t=tasState();ar.textContent=DHK[t.idx].a;ph.textContent=DHK[t.idx].p;fr.textContent=DHK[t.idx].f;cn.textContent=t.count;sm.textContent=t.target?(t.count>=t.target?"✓ terminé":"/ "+t.target):"sans limite";
+  ring.style.setProperty("--p",t.target?Math.min(100,t.count/t.target*100):0);ring.classList.toggle("fin",!!t.target&&t.count>=t.target);
+  tot.textContent="Aujourd'hui : "+t.total+" dhikr";dB.forEach((b,i)=>b.classList.toggle("on",i==t.idx));tB.forEach(([b,n])=>b.classList.toggle("on",n==t.target))}
+ upd();return c}
+
+function adItem(x,i,onCh){const d=h("div","ad"),hd=h("div","ah");hd.append(h("div","ni",String(i+1)),h("div","rep",x.n>1?"× "+x.n+" fois":"1 fois"));d.appendChild(hd);
+ if(x.a){const v=h("div","verse",x.a);v.dir="rtl";d.appendChild(v)}
+ if(x.p){d.appendChild(h("div","lb","Phonétique"));d.appendChild(h("div","ph",x.p))}
+ d.appendChild(h("div","lb","Sens"));d.appendChild(h("div","sn",x.f));
+ const ft=h("div","af");ft.appendChild(h("div","src","📜 "+x.s));
+ let k=0;const cb=h("button","chip cnt","0 / "+x.n);
+ cb.onclick=()=>{if(k>=x.n){k=0;cb.classList.remove("on");d.classList.remove("ok");cb.textContent="0 / "+x.n;onCh&&onCh(-1);return}
+  k++;buzz(k>=x.n?[100,60,100]:8);cb.textContent=k>=x.n?"✓ Fait":k+" / "+x.n;if(k>=x.n){cb.classList.add("on");d.classList.add("ok");onCh&&onCh(1)}};
+ ft.appendChild(cb);d.appendChild(ft);
+ const vt=h("div","vtxt"),vs=x.v||[];
+ if(vs.length){const ac=h("div","acts");vs.forEach(s=>{const b=h("button","chip",s[3]);b.onclick=async()=>{b.disabled=true;b.textContent="…";
+  try{const g=tools.find(t=>t.name=="get_verse");vt.innerHTML=md(await g.execute({surah:s[0],from:s[1],to:s[2]}))}catch(e){vt.textContent="Verset indisponible pour le moment."}
+  b.disabled=false;b.textContent=s[3]};ac.appendChild(b)});d.appendChild(ac)}
+ d.appendChild(vt);return d}
+function adkCard(){const c=h("div","card");c.id="adkcard";c.appendChild(dsec("🌿","Mes dhikr"));
+ c.appendChild(djCard());
+ const seg=h("div","seg");[...Object.keys(ADK),"tasbih"].forEach(k=>{const m=ADK[k]||{i:"📿",t:"Tasbih"},b=h("button",k==curSet?"on":null);b.append(h("b",null,m.i),m.t);b.onclick=()=>{curSet=k;c.replaceWith(adkCard())};seg.appendChild(b)});c.appendChild(seg);
+ if(curSet=="tasbih"){c.appendChild(h("div","cap","Tasbih : touche le cercle pour compter"));c.appendChild(tasCard());return c}
+ const L=ADK[curSet].l;let dn=0;c.appendChild(h("div","cap",ADK[curSet].cap));
+ const pt=h("div","note"),pb=h("div","pb"),pi=h("i");pb.appendChild(pi);const up=()=>{pt.textContent=dn+" / "+L.length+" terminés";pi.style.width=(dn/L.length*100)+"%"};up();c.append(pt,pb);
+ L.forEach((x,i)=>c.appendChild(adItem(x,i,dl=>{dn+=dl;up()})));
+ c.appendChild(h("div","note","Références indicatives. Pour un avis religieux, consulte un savant qualifié."));return c}
+
+function notifTxt(){return !("Notification" in window)?"Notifications indisponibles":Notification.permission=="granted"?"🔔 Notifications activées":Notification.permission=="denied"?"🚫 Notifications bloquées":"🔔 Activer les notifications"}
+let remOpen=false,alOpen=false;
+function redrawRem(){const o=$("remcard");if(o)o.replaceWith(remCard())}
+function remCard(){const c=h("div","card");c.id="remcard";c.appendChild(dsec("⏰","Alarmes de dhikr"));
+ if(!alOpen){const n=DB.d.rem.filter(r=>r.on).length;c.appendChild(h("div","sn","Des alarmes pour penser à ton dhikr à l'heure que tu choisis ("+n+" active"+(n>1?"s":"")+")."));const ob=h("button","addbtn","Gérer mes alarmes");ob.onclick=()=>{alOpen=true;redrawRem()};c.appendChild(ob);return c}
+ const today=new Date().getDay(),act=DB.d.rem.filter(r=>r.on&&(r.days||[]).includes(today)),dn=act.filter(r=>isDone(r.id)).length;
+ if(act.length){c.appendChild(h("div","note","Aujourd'hui : "+dn+" / "+act.length+" faits"));const pb=h("div","pb"),i=h("i");i.style.width=(dn/act.length*100)+"%";pb.appendChild(i);c.appendChild(pb)}
+ if(!DB.d.rem.length)c.appendChild(h("div","empty","Aucune alarme pour l'instant. Appuie sur « Ajouter une alarme »."));
+ DB.d.rem.forEach(r=>{const d=h("div","rm"+(r.on?"":" off"));d.appendChild(h("div","tm",r.time));
+  const t=h("div","t");t.appendChild(h("div","rl",r.label));t.appendChild(h("div","sub2",(r.fr?r.fr+" · ":"")+daysTxt(r.days||[])));if(r.ph)t.appendChild(h("div","ph2",r.ph));d.appendChild(t);
+  const tg=h("button","tg"+(r.on?" on":""));tg.setAttribute("aria-label","Activer / désactiver");tg.setAttribute("aria-pressed",String(!!r.on));tg.onclick=()=>{r.on=!r.on;DB.save();redrawRem()};d.appendChild(tg);
+  const ac=h("div","acts"),dd=isDone(r.id),fb=h("button","chip"+(dd?" on":""),dd?"✓ Fait":"Marquer fait");fb.onclick=()=>{setDone(r.id,!isDone(r.id));redrawRem()};ac.appendChild(fb);
+  if(r.link&&ADK[r.link]){const o=h("button","chip","Voir les dhikr");o.onclick=()=>openSet(r.link);ac.appendChild(o)}
+  const x=h("button","chip","Supprimer");x.onclick=()=>{DB.d.rem=DB.d.rem.filter(y=>y!==r);DB.save();redrawRem()};ac.appendChild(x);d.appendChild(ac);c.appendChild(d)});
+ const ab=h("button","addbtn",remOpen?"✕ Fermer":"+ Ajouter une alarme");ab.onclick=()=>{remOpen=!remOpen;redrawRem()};c.appendChild(ab);
+ if(remOpen){const p=h("div","addp");p.appendChild(h("div","lb","1 · Choisis un modèle"));
+  const pg=h("div","pgrid");PRESETS.forEach(m=>{const b=h("button","pc");b.appendChild(h("div","rl",m.label));b.appendChild(h("div","sub2",m.fr+" · "+m.time));b.onclick=()=>{addRem(m.label,m.time,m.days,m.link,m.ph,m.fr);remOpen=false;redrawRem()};pg.appendChild(b)});p.appendChild(pg);
+  p.appendChild(h("div","lb","ou 2 · Crée le tien"));
+  const row2=h("div","row"),li=h("input"),ti=h("input");row2.style.marginTop="0";li.placeholder="Nom (ex : Dhikr)";li.maxLength=60;ti.type="time";ti.value="08:00";row2.append(li,ti);p.appendChild(row2);
+  const sel=new Set(ALL),dys=h("div","dys");ORD.forEach(n=>{const b=h("button","chip on",DL[n]);b.onclick=()=>{sel.has(n)?sel.delete(n):sel.add(n);b.classList.toggle("on",sel.has(n))};dys.appendChild(b)});p.appendChild(dys);
+  const ad=h("button","go","Ajouter cette alarme");ad.style.cssText="width:100%;padding:12px";ad.onclick=()=>{if(!ti.value){toast("Choisis une heure.",null,3000);return}if(!sel.size){toast("Choisis au moins un jour.",null,3000);return}addRem(li.value.trim()||"Dhikr",ti.value,[...sel],null);remOpen=false;redrawRem()};p.appendChild(ad);c.appendChild(p)}
+ const ex=h("div","chips");ex.style.marginTop="14px";
+ const nb2=h("button","chip",notifTxt());nb2.onclick=async()=>{if(!("Notification" in window)){toast("Notifications non prises en charge ici : les rappels s'affichent dans l'app.",null,6000);return}try{await Notification.requestPermission()}catch(e){}redrawRem()};ex.appendChild(nb2);
+ const te=h("button","chip","▶ Tester");te.onclick=()=>fireRem({id:"test",label:"Test d'alarme",link:curSet,ph:PHL.matin});ex.appendChild(te);c.appendChild(ex);
+ c.appendChild(h("div","note","Les alarmes sonnent quand Noor est ouvert. App fermée, utilise aussi une alarme de ton téléphone."));
+ const rd=h("button","chip","Réduire");rd.style.marginTop="8px";rd.onclick=()=>{alOpen=false;remOpen=false;redrawRem()};c.appendChild(rd);return c}
+
+/* ===== Rappels du Coran ===== */
+const QT={
+ mort:{i:"⏳",t:"Mort",d:"Toute vie a une fin. Se souvenir de la mort aide à mieux vivre.",v:[
+  ["3",185,185,"Personne n'échappe à la mort : prépare ton retour vers Allah."],
+  ["62",8,8,"On ne peut pas fuir la mort."],
+  ["4",78,78,"La mort vient à l'heure fixée par Allah, où que l'on soit."],
+  ["63",10,11,"Donne et fais le bien avant qu'il ne soit trop tard."],
+  ["55",26,27,"Tout disparaît, seul Allah demeure."],
+  ["29",57,57,"Après la mort, le retour se fait vers Allah."]]},
+ vie:{i:"🌍",t:"Cette vie",d:"Ce monde est passager, l'au-delà demeure.",v:[
+  ["29",64,64,"La vraie vie est celle de l'au-delà."],
+  ["57",20,20,"Ne te laisse pas absorber par les plaisirs passagers."],
+  ["18",46,46,"Les bonnes œuvres durables valent mieux que les richesses."],
+  ["87",16,17,"L'au-delà est meilleur et plus durable."]]},
+ jour:{i:"⚖️",t:"Au-delà",d:"Chacun rencontrera son Seigneur et retrouvera ses actes.",v:[
+  ["99",7,8,"Chaque bien et chaque mal, même minuscule, sera retrouvé."],
+  ["82",19,19,"Ce jour-là, tout dépend d'Allah seul."],
+  ["19",95,95,"Chacun se présentera seul devant Allah."],
+  ["75",36,36,"Nous n'avons pas été créés sans but."]]},
+ repentir:{i:"🤲",t:"Repentir",d:"La porte du pardon d'Allah est toujours ouverte.",v:[
+  ["39",53,53,"Ne désespère jamais de la miséricorde d'Allah."],
+  ["66",8,8,"Reviens à Allah avec un repentir sincère."],
+  ["3",135,135,"Demande pardon tout de suite après une faute, sans persister."],
+  ["4",110,110,"Allah pardonne à celui qui Lui demande pardon."]]},
+ patience:{i:"🌿",t:"Patience",d:"Après la difficulté vient la facilité.",v:[
+  ["2",153,153,"Cherche de l'aide dans la patience et la prière."],
+  ["2",155,156,"Les épreuves font partie de la vie : reviens vers Allah."],
+  ["94",5,6,"Chaque difficulté est accompagnée de facilité."],
+  ["39",10,10,"La récompense des patients est sans limite."],
+  ["2",286,286,"Allah ne te demande rien au-delà de tes capacités."]]},
+ gratitude:{i:"💚",t:"Gratitude",d:"Remercier Allah, c'est reconnaître Ses bienfaits.",v:[
+  ["14",7,7,"Remercier Allah fait augmenter Ses bienfaits."],
+  ["16",18,18,"Les bienfaits d'Allah sont innombrables."],
+  ["2",152,152,"Pense à Allah, Il pense à toi."],
+  ["55",13,13,"Reconnais les bienfaits de ton Seigneur."]]},
+ confiance:{i:"🛡️",t:"Confiance",d:"S'en remettre à Allah apaise le cœur.",v:[
+  ["65",2,3,"Quiconque craint Allah, Il lui ouvre une issue et subvient à ses besoins."],
+  ["3",173,173,"Allah nous suffit, c'est le meilleur garant."],
+  ["9",51,51,"Rien ne t'arrive sans la volonté d'Allah."],
+  ["13",28,28,"Par le dhikr, les cœurs s'apaisent."]]},
+ proche:{i:"🤍",t:"Proche",d:"Allah est tout près de Son serviteur.",v:[
+  ["2",186,186,"Allah est proche et répond à celui qui L'invoque."],
+  ["50",16,16,"Allah connaît tout de toi, Il est plus proche que ta veine jugulaire."],
+  ["57",4,4,"Allah est avec toi où que tu sois."]]}};
+const QC={},QLONG=["57:4","2:286","66:8","3:135","4:110","4:78","57:20","65:2"];
+async function qv(s,a,b){const k=s+":"+a+"-"+b;if(QC[k])return QC[k];
+ const n=b-a+1,base="https://api.alquran.cloud/v1/surah/"+s+"/editions/",q="?offset="+(a-1)+"&limit="+n;
+ const r=await fetch(base+"quran-uthmani,fr.hamidullah"+q),d=await r.json();if(!d.data||!d.data[1])throw new Error("api");
+ let tr=[];try{const r2=await fetch(base+"en.transliteration"+q),d2=await r2.json(),e=Array.isArray(d2.data)?d2.data[0]:d2.data;if(e&&e.ayahs)tr=e.ayahs.map(x=>x.text)}catch(e){}
+ const o={ar:d.data[0].ayahs.map(x=>x.text),fr:d.data[1].ayahs.map(x=>x.text),tr,n:d.data[0].ayahs.map(x=>x.numberInSurah)};QC[k]=o;return o}
+const qref=(s,a,b)=>(S[+s-1]||"Sourate "+s)+" "+s+":"+(a==b?a:a+"-"+b);
+function qvCard(x){const[s,a,b,msg]=x,d=h("div","ad qv"),hd=h("div","ah"),ref=qref(s,a,b);hd.appendChild(h("div","rep",ref));d.appendChild(hd);
+ const body=h("div","qb");d.appendChild(body);
+ if(msg){const k=h("div","kp");k.append(h("div","lb","À retenir"),h("div",null,msg));d.appendChild(k)}
+ const ac=h("div","acts");d.appendChild(ac);
+ const load=async()=>{body.innerHTML="";ac.innerHTML="";body.appendChild(h("div","note","Chargement…"));
+  try{const o=await qv(s,a,b);body.innerHTML="";
+   o.ar.forEach(t=>{const v=h("div","verse",t);v.dir="rtl";body.appendChild(v)});
+   if(o.tr.length){body.appendChild(h("div","lb","Phonétique"));body.appendChild(h("div","ph",o.tr.join("\n")))}
+   body.appendChild(h("div","lb","Sens"));body.appendChild(h("div","sn",o.fr.map((t,i)=>o.fr.length>1?"("+o.n[i]+") "+t:t).join(" ")));
+   const cp=h("button","chip","📋 Copier");cp.onclick=async()=>{try{await navigator.clipboard.writeText(ref+"\n"+o.ar.join(" ")+"\n"+o.tr.join(" ")+"\n"+o.fr.join(" "));cp.textContent="Copié ✓"}catch(e){cp.textContent="Échec"}setTimeout(()=>cp.textContent="📋 Copier",1400)};
+   const ex=h("button","chip","💬 Demander à Noor");ex.onclick=()=>{$("q").value="Explique-moi le verset "+ref+" et comment l'appliquer.";show(1);$("q").focus()};ac.append(cp,ex)}
+  catch(e){body.innerHTML="";body.appendChild(h("div","note","Impossible de charger le verset (connexion)."));const rb=h("button","chip","↻ Réessayer");rb.onclick=load;ac.appendChild(rb)}};
+ load();return d}
+function qDay(){const all=[];Object.values(QT).forEach(t=>t.v.forEach(x=>{if(!QLONG.includes(x[0]+":"+x[1]))all.push(x)}));
+ const x=all[Math.floor(Date.now()/864e5)%all.length],c=h("div","dj"),a=h("div","a2"),f=h("div","f","…");a.dir="rtl";
+ c.append(h("div","k","✦ Rappel du jour ✦"),a,f,h("div","sr",qref(x[0],x[1],x[2])));
+ qv(x[0],x[1],x[2]).then(o=>{a.textContent=o.ar.join(" ");f.textContent=o.fr.join(" ")}).catch(()=>{a.remove();f.textContent=x[3]});return c}
+let qTheme="mort";
+function qrCard(){const c=h("div","card");c.id="qrcard";c.appendChild(dsec("📖","Rappels du Coran"));
+ c.appendChild(h("div","sn","Des versets où Allah nous rappelle l'essentiel, thème par thème."));
+ c.appendChild(qDay());
+ const g=h("div","seg seg4");Object.keys(QT).forEach(k=>{const m=QT[k],b=h("button",k==qTheme?"on":null);b.append(h("b",null,m.i),m.t);b.onclick=()=>{qTheme=k;c.replaceWith(qrCard())};g.appendChild(b)});c.appendChild(g);
+ const T=QT[qTheme];c.appendChild(h("div","cap",T.i+" "+T.t));c.appendChild(h("div","sn",T.d));
+ T.v.forEach(x=>c.appendChild(qvCard(x)));
+ c.appendChild(h("div","note","Textes : alquran.cloud (arabe et traduction Hamidullah). La phonétique est une translittération automatique : vérifie-la auprès d'un enseignant."));return c}
+
+function renderDhikr(){const b=$("dh");b.innerHTML="";b.append(adkCard(),qrCard(),remCard())}
+
+tools.push({name:"add_reminder",description:"Crée une ALARME quotidienne ou hebdomadaire (notification à une heure précise) pour penser au dhikr/adhkar. À n'utiliser que si la personne demande à être alertée à une heure donnée.",inputSchema:{type:"object",properties:{label:{type:"string",description:"intitulé du rappel, ex : Adhkâr as-Sabâh"},time:{type:"string",description:"heure au format HH:MM (24h), ex : 06:30"},days:{type:"string",description:"vide ou « tous » pour chaque jour ; sinon jours en français, ex : « vendredi » ou « lun, mer »"}},required:["label","time"]},
+ execute:async({label,time,days})=>{const m=String(time||"").match(/^(\d{1,2})[:h](\d{2})?$/);if(!m||+m[1]>23||+(m[2]||0)>59)return "Heure invalide : demande à la personne de préciser (ex : 06:30).";
+  const tm=String(m[1]).padStart(2,"0")+":"+String(m[2]||"00").padStart(2,"0");let d=ALL.slice();const s=String(days||"").toLowerCase();
+  if(s&&!/tous|chaque|quotid/.test(s)){const f=DN.map((x,i)=>s.includes(x)?i:-1).filter(i=>i>=0);if(f.length)d=f}
+  const low=String(label||"").toLowerCase(),link=/matin|sabah|sabâh/.test(low)?"matin":/soir|masa/.test(low)?"soir":/dorm|sommeil|nuit|nawm/.test(low)?"sommeil":/pri[eè]re|salat|salât/.test(low)?"priere":null;
+  addRem(label||"Dhikr",tm,d,link,link?PHL[link]:null,null);redrawRem();return "Alarme créée : "+(label||"Dhikr")+" à "+tm+" ("+daysTxt(d)+"). Il sonnera tant que l'app est ouverte."}});
+</script></body></html>
